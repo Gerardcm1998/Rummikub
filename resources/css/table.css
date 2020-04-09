@@ -1,0 +1,28 @@
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+td, tr {
+    border: 1px solid rgb(173, 173, 173);
+    height: 20px;
+    width: 30px;
+    text-align: center;
+}
+
+.redCards {
+    background-color: rgba(255, 65, 65, 0.568);
+}
+.yellowCards {
+    background-color: rgba(229, 255, 81, 0.774);
+}
+.greenCards {
+    background-color: rgba(78, 233, 78, 0.61);
+}
+.blueCards {
+    background-color: rgba(97, 75, 223, 0.705);
+}
+.jokerCards {
+    background-color: rgba(128, 128, 128, 0.356);
+}
