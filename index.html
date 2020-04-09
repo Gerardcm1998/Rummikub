@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="./resources/css/index.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/table.css" type="text/css" rel="stylesheet">
+  <link href="./resources/css/start.css" type="text/css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+  <script src="./resources/js/start.js"></script>
+  <script src="./resources/js/visual.js"></script>
+  <script src="./resources/js/game.js"></script>
+  
+  <title>RUMMIKUB NO-ONLINE</title>
+</head>
+
+<body>
+  <div class="title">
+    <h1>RUMMIKUB</h1>
+  </div>
+
+  <div id="initialMargin" style="margin-top: 60px;"></div>
+
+  <div id="playButtonDiv" class="startDiv" >
+    <button class="startButton" onclick="play()">PLAY</button>
+  </div>
+
+  <div id="playersDiv" class="hiddenCentered">
+  
+    <div id="numberPlayersDiv" class="hiddenCentered">
+      <label class="labels">Enter the number of players: (max 6)</label>
+      <input id="numberOfPlayers" class="playersInput" type="number" min="2" max="6" name="numberOfPlayers">
+      <button class="okButton" style="margin-left: 30px" onclick='askPlayersName(numberOfPlayers.value)'> ► </button>
+    </div>
+    
+    <div id="playerNamesDiv" class="hiddenCentered" >
+      <div id="playerNamesInput">
+        <!-- Name Inputs generated in JavaScript-->
+      </div>
+      <div>
+        <button class="startButton" onclick="start()"> START </button>
+      </div>
+    </div>
+
+  </div>
+  
+  <div id="playerNames" class="hiddenCentered" style="height: 60px; margin: auto; width: 100%; margin-top:20px;">
+    <!-- Player Names generated from JavaScript-->
+  </div>
+
+  <div id="panel" class="hiddenCentered" style="margin: auto; width: 100%;">
+    <div id="stealToken" style="width: 15%; display: inline-block;">
+      <button>STEAL TOKEN</label>
+    </div>  
+    <div id ="tableDiv" style="width: 65%; display: inline-block;">
+      <!-- Table generated from JavaScript-->
+    </div>
+    <div style="width: 15%; display: inline-block;">
+      <button>TURN FINISHED</button>
+    </div>
+  </div>
+  
+  <div id="cardPanelsDiv" class="hiddenCentered" style="width: 90%; margin: auto; margin-top: 30px">
+    <div id="cardsPanel1" style="width: 40%; display: inline-block; "></div>
+    <div id="jokerPanels" style="width: 10%; display: inline-block;">
+      <table>
+        <tr>
+          <td class="jokerCards">*</td>
+        </tr>
+        <tr>
+          <td class="jokerCards">*</td>
+        </tr>
+      </table>
+    </div>
+    <div id="cardsPanel2" style="width: 40%; display: inline-block;"></div>
+  </div>
+    
+</body>
+</html>
