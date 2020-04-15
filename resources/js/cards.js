@@ -1,6 +1,5 @@
-
+//Creem el vector de 106 cartes
 function initializeCards() {
-    //Creem el vector de cartes (106)
     var Cartes = [];
 	for (i = 0; i < 106; ++i) {
 		let pal;
@@ -15,8 +14,8 @@ function initializeCards() {
     sessionStorage.setItem("Cartes",Cartes);
 }
 
+//Creem la taula on escriurem el set del jugador, en lHTML que hem obert
 function initializePlayersHtml(id, playerNumber) {
-
     let table = "<table>";
     for (i = 1; i <= 4; ++i) {
         table += "<tr>";
@@ -31,9 +30,9 @@ function initializePlayersHtml(id, playerNumber) {
     table += "</table>";
     $("#"+id).html(table);
 }
-    
+
+//Creem els sets inicials i els escrivim a l'HTML de cada jugador
 function initializeSets(playerNumber) {
-    //Creem els sets inicials i els escrivim a l'HTML de cada jugador
     let Cartes = sessionStorage.getItem("Cartes");
     let k = playerNumber;
     let numberOfCards = Cartes.length;
@@ -44,6 +43,8 @@ function initializeSets(playerNumber) {
         let fila = numCard/100;
         let colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
+
+        //si és el joker o si és una carta qualsevol
         if (fila == 5) {
             $("#player"+k+"-"+(colu+1)+"-"+(14)).val("*");
             $("#player"+k+"-"+(colu+1)+"-"+(14)).addClass("jokerCards");
@@ -54,13 +55,13 @@ function initializeSets(playerNumber) {
             $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
         }
         
-        Cartes.splice(r);
+        Cartes.slice(r);
     }
     sessionStorage.setItem("Cartes",Cartes);
 }
 
+//Agafem una carta nova i la posem a l'HTML del jugador
 function takeCard (player) {
-    //Agafem una carta nova i la posem a l'HTML del jugador
     let Cartes = sessionStorage.getItem("Cartes");
     let k = player;
     let numberOfCards = Cartes.size();
@@ -72,6 +73,7 @@ function takeCard (player) {
     let colu = numCard-(100*pal);
     if (colu == 0) colu = 13;
 
+    //si és el joker o si és una carta qualsevol
     if (fila == 5) {
         $("#player"+k+"-"+(fila+1)+"-"+(14)).val("*");
         $("#player"+k+"-"+(fila+1)+"-"+(14)).addClass("jokerCards");
@@ -82,6 +84,6 @@ function takeCard (player) {
         $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
     }
     
-    Cartes.splice(r);
+    Cartes.slice(r);
     sessionStorage.setItem("Cartes",Cartes);
 }
