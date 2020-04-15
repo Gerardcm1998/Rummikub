@@ -1,4 +1,10 @@
 
+var numberOfPlayers;
+
+function getNumberOfPlayers() {
+    numberOfPlayers = $("#numberOfPlayers").val();
+}
+
 function play() {
     hidePlayButton();
     showNumberPlayersInput();
@@ -13,7 +19,8 @@ function showNumberPlayersInput() {
     $("#numberPlayersDiv").show();
 }
 
-function askPlayersName(numberOfPlayers) {
+function askPlayersName() {
+    getNumberOfPlayers();
     if (numberOfPlayers>4 || numberOfPlayers<2) return;
     $("#playerNamesDiv").show();
     var players = '<br>';
@@ -25,7 +32,9 @@ function askPlayersName(numberOfPlayers) {
     $("#playerNamesInput").html(players);
 }
 
-function showTokenLinks(numberOfPlayers) {
+function showTokenLinks() {
+    initializeCards();
+    setPlayerNames();
     $("#openTokensDiv").show();
     $("#playersDiv").hide();
     let code = '';
@@ -40,12 +49,12 @@ function start() {
     $("#playersDiv").hide();
     $("#openTokensDiv").hide();
     $("#playerNames").show();
-    writePlayerNames($("#numberOfPlayers").val());
+    writePlayerNames();
     createTable();
-    createCardTable();
+    createCards();
 }
 
-function writePlayerNames(numberOfPlayers) {
+function writePlayerNames() {
     let player = $(`#playerName1`).val();
     let code = '<label id="player1" class="playerSelected" onclick="initializeSets()">'+player+'</label>';
     for (i=2; i <= numberOfPlayers; ++i) {
@@ -69,7 +78,7 @@ function createTable () {
     $("#tableDiv").html(table);
 }
 
-function createCardTable() {
+function createCards() {
     $("#cardPanelsDiv").show();
     let table = "<table>";
     for (i = 1; i <= 4; ++i) {

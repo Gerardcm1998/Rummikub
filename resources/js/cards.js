@@ -1,6 +1,7 @@
-function inicializeCards () {
-    //Creem el vector de cartes
-	var Cartes; //106
+
+function initializeCards() {
+    //Creem el vector de cartes (106)
+    var Cartes = [];
 	for (i = 0; i < 106; ++i) {
 		let pal;
 		if (i < 26) pal = 1;
@@ -11,9 +12,11 @@ function inicializeCards () {
 		
 		Cartes[i] = pal*100 + (i+1)%13;
     }	
+    sessionStorage.setItem("Cartes",Cartes);
 }
 
 function initializePlayersHtml(id, playerNumber) {
+
     let table = "<table>";
     for (i = 1; i <= 4; ++i) {
         table += "<tr>";
@@ -29,34 +32,37 @@ function initializePlayersHtml(id, playerNumber) {
     $("#"+id).html(table);
 }
     
-function inicializeSets (numberOfPlayer) {
+function initializeSets(playerNumber) {
     //Creem els sets inicials i els escrivim a l'HTML de cada jugador
-    let k = numberOfPlayer;
-    let numberOfCards = Cartes.size();
+    let Cartes = sessionStorage.getItem("Cartes");
+    let k = playerNumber;
+    let numberOfCards = Cartes.length;
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     for (j = 0; j < 13; ++j) {
         let r = Math.floor(Math.random()*numberOfCards);
         let numCard = Cartes[r];
         let fila = numCard/100;
-        let colu = numCard-(100*pal);
+        let colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
         if (fila == 5) {
-            $("#"+k+(colu+1)+"-"+(14)).val("*");
-            $("#"+k+(colu+1)+"-"+(14)).addClass("jokerCards");
+            $("#player"+k+"-"+(colu+1)+"-"+(14)).val("*");
+            $("#player"+k+"-"+(colu+1)+"-"+(14)).addClass("jokerCards");
         }
         else {
-            if ($("#"+k+(fila)+"-"+(colu)).val() == "") $("#"+k+(fila)+"-"+(colu)).val(colu);
-            else $("#"+k+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-            $("#"+k+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
+            if ($("#player"+k+"-"+(fila)+"-"+(colu)).val() == "") $("#"+k+(fila)+"-"+(colu)).val(colu);
+            else $("#player"+k+"-"+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+            $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
         }
         
         Cartes.splice(r);
     }
+    sessionStorage.setItem("Cartes",Cartes);
 }
 
-function takeCard (numberOfPlayer) {
+function takeCard (player) {
     //Agafem una carta nova i la posem a l'HTML del jugador
-    let k = numberOfPlayer;
+    let Cartes = sessionStorage.getItem("Cartes");
+    let k = player;
     let numberOfCards = Cartes.size();
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     let r = Math.floor(Math.random()*numberOfCards);
@@ -67,14 +73,15 @@ function takeCard (numberOfPlayer) {
     if (colu == 0) colu = 13;
 
     if (fila == 5) {
-        $("#"+k+(colu+1)+"-"+(14)).val("*");
-        $("#"+k+(colu+1)+"-"+(14)).addClass("jokerCards");
+        $("#player"+k+"-"+(fila+1)+"-"+(14)).val("*");
+        $("#player"+k+"-"+(fila+1)+"-"+(14)).addClass("jokerCards");
     }
     else {
-        if ($("#"+k+(fila)+"-"+(colu)).val() == "") $("#"+k+(fila)+"-"+(colu)).val(colu);
-        else $("#"+k+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-        $("#"+k+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
+        if  ($("#player"+k+"-"+(fila)+"-"+(colu)).val() == "") $("#player"+k+"-"+(fila)+"-"+(colu)).val(colu);
+        else $("#player"+k+"-"+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+        $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
     }
     
     Cartes.splice(r);
+    sessionStorage.setItem("Cartes",Cartes);
 }

@@ -7,6 +7,7 @@
   <link href="./resources/css/start.css" type="text/css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
   <script src="./resources/js/start.js"></script>
+  <script src="./resources/js/players.js"></script>
   <script src="./resources/js/game.js"></script>
   <script src="./resources/js/cards.js"></script>
   
@@ -29,7 +30,7 @@
     <div id="numberPlayersDiv" class="hiddenCentered">
       <label class="labels">Enter the number of players: (max 4)</label>
       <input id="numberOfPlayers" class="playersInput" type="number" min="2" max="4" name="numberOfPlayers">
-      <button class="okButton" style="margin-left: 30px" onclick='askPlayersName(numberOfPlayers.value)'> ► </button>
+      <button class="okButton" style="margin-left: 30px" onclick='askPlayersName()'> ► </button>
     </div>
     
     <div id="playerNamesDiv" class="hiddenCentered" >
@@ -37,7 +38,7 @@
         <!-- Name Inputs generated in JavaScript-->
       </div>
       <div>  
-        <button class="startButton" onclick="showTokenLinks(numberOfPlayers.value)"> Show Tokens </button>
+        <button class="startButton" onclick="showTokenLinks()"> Show Tokens </button>
       </div>
     </div>
   </div>
