@@ -1,10 +1,4 @@
 
-var numberOfPlayers;
-
-function getNumberOfPlayers() {
-    numberOfPlayers = $("#numberOfPlayers").val();
-}
-
 function play() {
     hidePlayButton();
     showNumberPlayersInput();
@@ -20,26 +14,29 @@ function showNumberPlayersInput() {
 }
 
 function askPlayersName() {
-    getNumberOfPlayers();
+    setNumberOfPlayers($("#numberOfPlayers").val());
+    var numberOfPlayers = getNumberOfPlayers();
     if (numberOfPlayers>4 || numberOfPlayers<2) return;
     $("#playerNamesDiv").show();
     var players = '<br>';
     for (i = 1; i <= numberOfPlayers; ++i) {
         players += '<label for="player'+i+'">Player '+i+':</label> ';
-        players += '<input id="playerName'+i+'" class="playersInput" type="text"  name="playerName'+i+'"><br><br>';
+        players += '<input id="playerName'+i+'" class="playersInput" type="text" name="playerName'+i+'"><br><br>';
     }
     players += "<br>";
     $("#playerNamesInput").html(players);
 }
 
 function showTokenLinks() {
+    var numberOfPlayers = getNumberOfPlayers();
     initializeCards();
     setPlayerNames();
     $("#openTokensDiv").show();
     $("#playersDiv").hide();
     let code = '';
     for (i=1; i<=numberOfPlayers;++i) {
-        code += '<a href="./resources/html/player'+i+'.html" target="_blank" class="playerNotSelected">Player '+i+'</a>'
+        playerName = getPlayerName(i);
+        code += '<a href="./resources/html/player'+i+'.html" target="_blank" class="playerNotSelected">'+playerName+'</a>'
     }
     $("#openTokens").html(code);
 }
@@ -55,22 +52,23 @@ function start() {
 }
 
 function writePlayerNames() {
-    let player = $(`#playerName1`).val();
-    let code = '<label id="player1" class="playerSelected" onclick="initializeSets()">'+player+'</label>';
+    var numberOfPlayers = getNumberOfPlayers();
+    var player = getPlayerName(1);
+    var code = '<label id="player1" class="playerSelected">'+player+'</label>';
     for (i=2; i <= numberOfPlayers; ++i) {
-        let player = $(`#playerName${i}`).val();
-        code += '<label id="player'+i+'" class="playerNotSelected">'+player+'</label>';
+        var playerName = getPlayerName(i);
+        code += '<label id="player'+i+'" class="playerNotSelected">'+playerName+'</label>';
     }
     $("#playerNames").html(code);
 }
 
 function createTable () {
     $("#panel").show();
-    let table = "<table>";
-    for (i = 1; i <=16; ++i) {
+    var table = "<table>";
+    for (i = 1; i <= 16; ++i) {
         table += "<tr>";
-        for (j=1;j<=25;++j) {
-            table += "<td> "+"</td>";
+        for (j = 1; j <= 25; ++j) {
+            table += "<td></td>";
         }
         table += "</tr>";
     }

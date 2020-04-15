@@ -11,12 +11,13 @@
     <title>NAME1 TOKENS</title>
     <script>
         $( document ).ready(function() {
+            document.title = "Cartes de "+ getPlayerName(1);
             initializePlayersHtml("player1Board",1);
-            var Cartes = sessionStorage.getItem("Cartes");
             initializeSets(1);
+            Cards = getCards();
+            window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
         }); 
     </script>
-
 
 </head>
 <body>

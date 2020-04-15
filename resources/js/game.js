@@ -10,7 +10,7 @@ function giveToken() {
 
 function changeTurn (actualPlayerId) {
     var actualPlayer = parseInt(actualPlayerId.charAt(actualPlayerId.length-1));
-    let numberOfPlayers = parseInt($("#numberOfPlayers").val());
+    var numberOfPlayers = getNumberOfPlayers();
     finishTurn(actualPlayer);
     if (actualPlayer >= numberOfPlayers) {
         startTurn(1);
