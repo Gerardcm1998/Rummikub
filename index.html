@@ -7,7 +7,6 @@
   <link href="./resources/css/start.css" type="text/css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
   <script src="./resources/js/start.js"></script>
-  <script src="./resources/js/visual.js"></script>
   <script src="./resources/js/game.js"></script>
   
   <title>RUMMIKUB NO-ONLINE</title>
@@ -27,8 +26,8 @@
   <div id="playersDiv" class="hiddenCentered">
   
     <div id="numberPlayersDiv" class="hiddenCentered">
-      <label class="labels">Enter the number of players: (max 6)</label>
-      <input id="numberOfPlayers" class="playersInput" type="number" min="2" max="6" name="numberOfPlayers">
+      <label class="labels">Enter the number of players: (max 4)</label>
+      <input id="numberOfPlayers" class="playersInput" type="number" min="2" max="4" name="numberOfPlayers">
       <button class="okButton" style="margin-left: 30px" onclick='askPlayersName(numberOfPlayers.value)'> ► </button>
     </div>
     
@@ -49,13 +48,13 @@
 
   <div id="panel" class="hiddenCentered" style="margin: auto; width: 100%;">
     <div id="stealToken" style="width: 15%; display: inline-block;">
-      <button>STEAL TOKEN</label>
+      <button onclick='stealToken($(".playerSelected").prop("id"))'>STEAL TOKEN</label>
     </div>  
     <div id ="tableDiv" style="width: 65%; display: inline-block;">
       <!-- Table generated from JavaScript-->
     </div>
     <div style="width: 15%; display: inline-block;">
-      <button>TURN FINISHED</button>
+      <button onclick='changeTurn($(".playerSelected").prop("id"))'>TURN FINISHED</button>
     </div>
   </div>
   

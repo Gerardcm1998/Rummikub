@@ -14,7 +14,7 @@ function showNumberPlayersInput() {
 }
 
 function askPlayersName(numberOfPlayers) {
-    if (numberOfPlayers>6 || numberOfPlayers<2) return;
+    if (numberOfPlayers>4 || numberOfPlayers<2) return;
     $("#playerNamesDiv").show();
     var players = '<br>';
     for (i = 1; i <= numberOfPlayers; ++i) {
