@@ -37,19 +37,19 @@
         <!-- Name Inputs generated in JavaScript-->
       </div>
       <div>  
-        <button class="startButton" onclick="showTokenLinks()"> Show Tokens </button>
-      </div>
-      <div id="openTokensDiv" class="hiddenCentered">
-        <a href="./resources/html/player1.html" target="_blank">Player 1</a>
-        <a href="./resources/html/player2.html" target="_blank">Player 2</a>
-        <a href="./resources/html/player3.html" target="_blank">Player 3</a>
-        <a href="./resources/html/player4.html" target="_blank">Player 4</a>
-      </div>
-      <div id="startButton" class="hiddenCentered">
-        <button class="startButton" onclick="start()"> START </button>
+        <button class="startButton" onclick="showTokenLinks(numberOfPlayers.value)"> Show Tokens </button>
       </div>
     </div>
+  </div>
 
+  <div id="openTokensDiv" class="hiddenCentered" >
+    <label>Click here to obtain your tokens:</label>
+    <div id="openTokens" style="margin-top: 20px; margin-bottom: 20px;">
+      <!-- Open Tokens Links generated in JavaScript -->
+    </div>
+    <div>
+      <button class="startButton" onclick="start()"> START </button>
+    </div>
   </div>
   
   <div id="playerNames" class="hiddenCentered" style="height: 60px; margin: auto; width: 100%; margin-top:20px;">
