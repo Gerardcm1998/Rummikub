@@ -37,21 +37,15 @@ function inicializeCards () {
     }	
 }
     
-function inicializeSets (numberOfplayers, playersNames) {
-	//Creem els sets inicials
-	for (i = 0; i < n; ++i) {
-		string nomjugador = Jugadors[i];
-		ofstream myfile;
-		myfile.open( nomjugador+".csv" );
-		vector< vector<int>> V(5, vector<int> (13));
-		vector<string> nomcolor;
-		nomcolor = {"vermell","blau","verd","groc","joker"};	
+function inicializeSets () {
+    //Creem els sets inicials
+        let numberOfCards = Cartes.size();
+		let nomcolor = {"vermell","blau","verd","groc","joker"};	
 		for (int j = 0; j < 13; ++j) {
-			int l = Cartes.size();
-			int r = (rand() % l)*aleatori % l;
-			int c = Cartes[r];
-			int pal = c/100;
-			int valor = c-(100*pal);
+			let r = Math.floor(Math.random()*numberOfCards);
+			let numCard = Cartes[r];
+			let pal = numCard/100;
+			let valor = numCard-(100*pal);
 			if (pal == 1) {
 				if (V[0][valor] != 0) V[0][valor] = (valor+1)*1000+(valor+1);
 				else V[0][valor] = valor+1;
