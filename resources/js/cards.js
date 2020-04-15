@@ -63,25 +63,25 @@ function inicializeSets () {
 }
 
 function takeCard () {
-	//Demanem agafar una carta nova
-	bool fijoc = false;
-	while (fijoc == false){
-		string nomjugador;
-		ofstream myfile;
-		cout << "Quin jugador vol una carta extra?" << endl;
-		cin >> nomjugador;
-		if (nomjugador == "FI") fijoc = true;
-		else {
-			myfile.open( nomjugador+".txt" );
-			int l = Cartes.size();
-			int r = (rand() % l)*aleatori % l;
-			myfile << "Has agafat la carta: " << donarnomcarta(Cartes[r]) << endl;
-			int intermedi = Cartes[l-1];
-			Cartes[l-1] = Cartes[r];
-			Cartes[r] = intermedi;
-			Cartes.pop_back();
-			if (l-1 == 0) fijoc = true;
-		}
-		myfile.close();
-	}
+	//Agafem una carta nova i la posem a l'HTML del jugador
+    let numberOfCards = Cartes.size();
+    let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
+    let r = Math.floor(Math.random()*numberOfCards);
+
+    let numCard = Cartes[r];
+    let fila = numCard/100;
+    let colu = numCard-(100*pal);
+    if (colu == 0) colu = 13;
+
+    if (fila == 5) {
+        $("#"+(colu+1)"-"+(14)).val("*");
+        $("#"+(colu+1)"-"+(14)).addClass("jokerCards");
+    }
+    else {
+        if ($("#"+(fila)"-"+(colu)).val() == "") $("#"+(fila)"-"+(colu)).val(colu);
+        else $("#"+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+        $("#"+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+    }
+    
+    Cartes.splice(r);
 }
