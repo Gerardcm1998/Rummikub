@@ -12,8 +12,7 @@
     <script>
         $( document ).ready(function() {
             document.title = "Cartes de "+ getPlayerName(3);
-            initializePlayersHtml("player3Board", 3);
-            initializeSets(3);
+            initializePlayer("player3Board", 3);
             var Cards = getCards();
             window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
         }); 

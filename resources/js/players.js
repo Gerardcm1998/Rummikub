@@ -27,7 +27,7 @@ function getPlayerName(n) {
  * @param {Id del div del panell del jugador, de format "player_Board"} divId 
  * @param {Numero de jugador} playerNumber 
  */
-function initializePlayersHtml(divId, playerNumber) {
+function initializePlayer(divId, playerNumber) {
     var table = "<table>";
     for (i = 1; i <= 4; ++i) {
         table += "<tr>";
@@ -41,4 +41,5 @@ function initializePlayersHtml(divId, playerNumber) {
     }
     table += "</table>";
     $("#"+divId).html(table);
+    initializeSets(playerNumber);
 }
