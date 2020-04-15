@@ -1,24 +1,23 @@
 <html>
-<title>
-
+<head>
+    <link href="../css/index.css" type="text/css" rel="stylesheet">
+    <link href="../css/table.css" type="text/css" rel="stylesheet">
+    <link href="../css/start.css" type="text/css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
-    <script src="./resources/js/start.js"></script>
-    <script src="./resources/js/game.js"></script>
-    <script src="./resources/js/cards.js"></script>
+    <script src="../js/start.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/cards.js"></script>
+
+    <title>NAME1 TOKENS</title>
     <script>
         $( document ).ready(function() {
-            initializePlayersHtml("player1Board")
+            initializePlayersHtml("player1Board",1);
         }); 
     </script>
-</title>
+
+
+</head>
 <body>
-
-    <div id="player1Board" onload="initializePlayersHtml(this.id)">
-
-        
-    </div>
-
-
-
+    <div id="player1Board"></div>
 </body>
 </html>

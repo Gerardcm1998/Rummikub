@@ -25,6 +25,11 @@ function askPlayersName(numberOfPlayers) {
     $("#playerNamesInput").html(players);
 }
 
+function showTokenLinks() {
+    $("#openTokensDiv").show();
+    $("#startButton").show();
+}
+
 function start() {
     $("#initialMargin").hide();
     $("#playersDiv").hide();

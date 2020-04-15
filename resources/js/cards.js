@@ -29,7 +29,6 @@ function initializePlayersHtml(id, playerNumber) {
     $("#"+id).html(table);
 }
     
-/*
 function inicializeSets (numberOfPlayer) {
     //Creem els sets inicials i els escrivim a l'HTML de cada jugador
     let k = numberOfPlayer;
@@ -79,4 +78,3 @@ function takeCard (numberOfPlayer) {
     
     Cartes.splice(r);
 }
-*/
