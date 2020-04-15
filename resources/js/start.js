@@ -36,7 +36,7 @@ function start() {
 
 function writePlayerNames(numberOfPlayers) {
     let player = $(`#playerName1`).val();
-    let code = '<label id="player1" class="playerSelected">'+player+'</label>';
+    let code = '<label id="player1" class="playerSelected"  onclick="initializeSets()">'+player+'</label>';
     for (i=2; i <= numberOfPlayers; ++i) {
         let player = $(`#playerName${i}`).val();
         code += '<label id="player'+i+'" class="playerNotSelected">'+player+'</label>';

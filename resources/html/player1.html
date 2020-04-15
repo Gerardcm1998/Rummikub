@@ -1,10 +1,22 @@
 <html>
-
 <title>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+    <script src="./resources/js/start.js"></script>
+    <script src="./resources/js/game.js"></script>
+    <script src="./resources/js/cards.js"></script>
+    <script>
+        $( document ).ready(function() {
+            initializePlayersHtml("player1Board")
+        }); 
+    </script>
 </title>
 <body>
-    
+
+    <div id="player1Board" onload="initializePlayersHtml(this.id)">
+
+        
+    </div>
 
 
 

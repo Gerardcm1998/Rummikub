@@ -36,7 +36,24 @@ function inicializeCards () {
 		Cartes[i] = pal*100 + (i+1)%13;
     }	
 }
+
+function initializePlayersHtml(id, playerNumber) {
+    let table = "<table>";
+    for (i = 1; i <= 4; ++i) {
+        table += "<tr>";
+        for (j = 1; j <= 14; ++j) {
+			if (i == 1 || i == 4) {
+				if (j == 14) continue;
+			}
+           	table += "<td id='player"+playerNumber+"-"+i+"-"+j+"'></td>";
+        }
+        table += "</tr>";
+    }
+    table += "</table>";
+    $("#"+id).html(table);
+}
     
+/*
 function inicializeSets (numberOfplayers, playersNames) {
 	//Creem els sets inicials
 	for (i = 0; i < n; ++i) {
@@ -112,3 +129,4 @@ function inicializeSets (numberOfplayers, playersNames) {
 		
 	cout << "El joc s'ha acabat! Gràcies per la vostra participació i felicitats als guanyadors!!" << endl;
 }
+*/
