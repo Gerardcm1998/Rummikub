@@ -39,49 +39,30 @@ function inicializeCards () {
     
 function inicializeSets () {
     //Creem els sets inicials
-        let numberOfCards = Cartes.size();
-		let nomcolor = {"vermell","blau","verd","groc","joker"};	
-		for (int j = 0; j < 13; ++j) {
-			let r = Math.floor(Math.random()*numberOfCards);
-			let numCard = Cartes[r];
-			let pal = numCard/100;
-			let valor = numCard-(100*pal);
-			if (pal == 1) {
-				if (V[0][valor] != 0) V[0][valor] = (valor+1)*1000+(valor+1);
-				else V[0][valor] = valor+1;
-			}
-			else if (pal == 2) {
-				if (V[1][valor] != 0) V[1][valor] = (valor+1)*1000+(valor+1);
-				else V[1][valor] = valor+1;
-			}
-			else if (pal == 3) {
-				if (V[2][valor] != 0) V[2][valor] = (valor+1)*1000+(valor+1);
-				else V[2][valor] = valor+1;
-			}
-			else if (pal == 4) {
-				if (V[3][valor] != 0) V[3][valor] = (valor+1)*1000+(valor+1);
-				else V[3][valor] = valor+1;
-			}
-			else {
-				V[4][valor] = 0;
-			}
-			int intermedi = Cartes[l-1];
-			Cartes[l-1] = Cartes[r];
-			Cartes[r] = intermedi;
-			Cartes.pop_back();
-		}
-		for (int i = 0; i < 5; ++i) {
-			myfile << nomcolor[i];
-			for (int j = 0; j < 13; ++j) {
-				if (V[i][j] == 0) myfile << "," << "";
-				else myfile << "," << V[i][j];
-			}
-			myfile << endl;
-		}
-		myfile.close();
-	}
+    let numberOfCards = Cartes.size();
+    let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
+    for (int j = 0; j < 13; ++j) {
+        let r = Math.floor(Math.random()*numberOfCards);
+        let numCard = Cartes[r];
+        let fila = numCard/100;
+        let colu = numCard-(100*pal);
+        if (colu == 0) colu = 13;
 
+        if (fila == 5) {
+            $("#"+(colu+1)"-"+(14)).val("*");
+            $("#"+(colu+1)"-"+(14)).addClass("jokerCards");
+        }
+        else {
+            if ($("#"+(fila)"-"+(colu)).val() == "") $("#"+(fila)"-"+(colu)).val(colu);
+            else $("#"+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+            $("#"+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+        }
+        
+        Cartes.splice(r);
+    }
 }
+
+function takeCard () {
 	//Demanem agafar una carta nova
 	bool fijoc = false;
 	while (fijoc == false){
@@ -103,6 +84,4 @@ function inicializeSets () {
 		}
 		myfile.close();
 	}
-		
-	cout << "El joc s'ha acabat! Gràcies per la vostra participació i felicitats als guanyadors!!" << endl;
 }
