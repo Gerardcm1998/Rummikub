@@ -65,9 +65,9 @@ function createCardTable() {
         table += "<tr>";
         for (j = 1; j <= 13; ++j) {
             if (i==1)      table += "<td class='redCards'> ";
-            else if (i==2) table += "<td class='yellowCards'> ";
+            else if (i==2) table += "<td class='blueCards'> ";
             else if (i==3) table += "<td class='greenCards'> ";
-            else if (i==4) table += "<td class='blueCards'> ";
+            else if (i==4) table += "<td class='yellowCards'> ";
             
             table += j+"</td>";
         }

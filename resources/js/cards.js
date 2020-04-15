@@ -1,27 +1,3 @@
-function donarnomcarta(num){
-    let pal = num/100;
-    let valor = num - 100*pal;
-
-    let nomcarta;
-    let nompal;
-    let nomvalor;
-
-    //donem el nom del pal
-	if (pal == 1) nompal = "Vermell";
-	else if (pal == 2) nompal = "Blau";
-	else if (pal == 3) nompal = "Verd";
-    else if (pal == 4) nompal = "Groc";
-    
-    //donem el nom al valor
-	if (valor != 0) nomvalor = valor;
-	else nomvalor = 13;
-	if (num > 500) nomcarta = "joker"; 
-	else nomcarta = nomvalor + " de " + nompal;
-	
-	return nomcarta;
-}
-
-
 function inicializeCards () {
     //Creem el vector de cartes
 	var Cartes; //106
@@ -54,79 +30,53 @@ function initializePlayersHtml(id, playerNumber) {
 }
     
 /*
-function inicializeSets (numberOfplayers, playersNames) {
-	//Creem els sets inicials
-	for (i = 0; i < n; ++i) {
-		string nomjugador = Jugadors[i];
-		ofstream myfile;
-		myfile.open( nomjugador+".csv" );
-		vector< vector<int>> V(5, vector<int> (13));
-		vector<string> nomcolor;
-		nomcolor = {"vermell","blau","verd","groc","joker"};	
-		for (int j = 0; j < 13; ++j) {
-			int l = Cartes.size();
-			int r = (rand() % l)*aleatori % l;
-			int c = Cartes[r];
-			int pal = c/100;
-			int valor = c-(100*pal);
-			if (pal == 1) {
-				if (V[0][valor] != 0) V[0][valor] = (valor+1)*1000+(valor+1);
-				else V[0][valor] = valor+1;
-			}
-			else if (pal == 2) {
-				if (V[1][valor] != 0) V[1][valor] = (valor+1)*1000+(valor+1);
-				else V[1][valor] = valor+1;
-			}
-			else if (pal == 3) {
-				if (V[2][valor] != 0) V[2][valor] = (valor+1)*1000+(valor+1);
-				else V[2][valor] = valor+1;
-			}
-			else if (pal == 4) {
-				if (V[3][valor] != 0) V[3][valor] = (valor+1)*1000+(valor+1);
-				else V[3][valor] = valor+1;
-			}
-			else {
-				V[4][valor] = 0;
-			}
-			int intermedi = Cartes[l-1];
-			Cartes[l-1] = Cartes[r];
-			Cartes[r] = intermedi;
-			Cartes.pop_back();
-		}
-		for (int i = 0; i < 5; ++i) {
-			myfile << nomcolor[i];
-			for (int j = 0; j < 13; ++j) {
-				if (V[i][j] == 0) myfile << "," << "";
-				else myfile << "," << V[i][j];
-			}
-			myfile << endl;
-		}
-		myfile.close();
-	}
-
+function inicializeSets (numberOfPlayer) {
+    //Creem els sets inicials i els escrivim a l'HTML de cada jugador
+    let k = numberOfPlayer;
+    let numberOfCards = Cartes.size();
+    let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
+    for (int j = 0; j < 13; ++j) {
+        let r = Math.floor(Math.random()*numberOfCards);
+        let numCard = Cartes[r];
+        let fila = numCard/100;
+        let colu = numCard-(100*pal);
+        if (colu == 0) colu = 13;
+        if (fila == 5) {
+            $("#"+k+(colu+1)"-"+(14)).val("*");
+            $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
+        }
+        else {
+            if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
+            else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+            $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+        }
+        
+        Cartes.splice(r);
+    }
 }
-	//Demanem agafar una carta nova
-	bool fijoc = false;
-	while (fijoc == false){
-		string nomjugador;
-		ofstream myfile;
-		cout << "Quin jugador vol una carta extra?" << endl;
-		cin >> nomjugador;
-		if (nomjugador == "FI") fijoc = true;
-		else {
-			myfile.open( nomjugador+".txt" );
-			int l = Cartes.size();
-			int r = (rand() % l)*aleatori % l;
-			myfile << "Has agafat la carta: " << donarnomcarta(Cartes[r]) << endl;
-			int intermedi = Cartes[l-1];
-			Cartes[l-1] = Cartes[r];
-			Cartes[r] = intermedi;
-			Cartes.pop_back();
-			if (l-1 == 0) fijoc = true;
-		}
-		myfile.close();
-	}
-		
-	cout << "El joc s'ha acabat! Gràcies per la vostra participació i felicitats als guanyadors!!" << endl;
+
+function takeCard (numberOfPlayer) {
+    //Agafem una carta nova i la posem a l'HTML del jugador
+    let k = numberOfPlayer;
+    let numberOfCards = Cartes.size();
+    let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
+    let r = Math.floor(Math.random()*numberOfCards);
+
+    let numCard = Cartes[r];
+    let fila = numCard/100;
+    let colu = numCard-(100*pal);
+    if (colu == 0) colu = 13;
+
+    if (fila == 5) {
+        $("#"+k+(colu+1)"-"+(14)).val("*");
+        $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
+    }
+    else {
+        if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
+        else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+        $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+    }
+    
+    Cartes.splice(r);
 }
 */
