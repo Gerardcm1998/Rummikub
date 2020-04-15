@@ -1,27 +1,3 @@
-function donarnomcarta(num){
-    let pal = num/100;
-    let valor = num - 100*pal;
-
-    let nomcarta;
-    let nompal;
-    let nomvalor;
-
-    //donem el nom del pal
-	if (pal == 1) nompal = "Vermell";
-	else if (pal == 2) nompal = "Blau";
-	else if (pal == 3) nompal = "Verd";
-    else if (pal == 4) nompal = "Groc";
-    
-    //donem el nom al valor
-	if (valor != 0) nomvalor = valor;
-	else nomvalor = 13;
-	if (num > 500) nomcarta = "joker"; 
-	else nomcarta = nomvalor + " de " + nompal;
-	
-	return nomcarta;
-}
-
-
 function inicializeCards () {
     //Creem el vector de cartes
 	var Cartes; //106
@@ -37,8 +13,9 @@ function inicializeCards () {
     }	
 }
     
-function inicializeSets () {
-    //Creem els sets inicials
+function inicializeSets (numberOfPlayer) {
+    //Creem els sets inicials i els escrivim a l'HTML de cada jugador
+    let k = numberOfPlayer;
     let numberOfCards = Cartes.size();
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     for (int j = 0; j < 13; ++j) {
@@ -49,21 +26,22 @@ function inicializeSets () {
         if (colu == 0) colu = 13;
 
         if (fila == 5) {
-            $("#"+(colu+1)"-"+(14)).val("*");
-            $("#"+(colu+1)"-"+(14)).addClass("jokerCards");
+            $("#"+k+(colu+1)"-"+(14)).val("*");
+            $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
         }
         else {
-            if ($("#"+(fila)"-"+(colu)).val() == "") $("#"+(fila)"-"+(colu)).val(colu);
-            else $("#"+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-            $("#"+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+            if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
+            else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+            $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
         }
         
         Cartes.splice(r);
     }
 }
 
-function takeCard () {
-	//Agafem una carta nova i la posem a l'HTML del jugador
+function takeCard (numberOfPlayer) {
+    //Agafem una carta nova i la posem a l'HTML del jugador
+    let k = numberOfPlayer;
     let numberOfCards = Cartes.size();
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     let r = Math.floor(Math.random()*numberOfCards);
@@ -74,13 +52,13 @@ function takeCard () {
     if (colu == 0) colu = 13;
 
     if (fila == 5) {
-        $("#"+(colu+1)"-"+(14)).val("*");
-        $("#"+(colu+1)"-"+(14)).addClass("jokerCards");
+        $("#"+k+(colu+1)"-"+(14)).val("*");
+        $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
     }
     else {
-        if ($("#"+(fila)"-"+(colu)).val() == "") $("#"+(fila)"-"+(colu)).val(colu);
-        else $("#"+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-        $("#"+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+        if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
+        else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+        $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
     }
     
     Cartes.splice(r);
