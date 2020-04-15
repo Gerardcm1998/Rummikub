@@ -18,7 +18,7 @@ function inicializeSets (numberOfPlayer) {
     let k = numberOfPlayer;
     let numberOfCards = Cartes.size();
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
-    for (int j = 0; j < 13; ++j) {
+    for (j = 0; j < 13; ++j) {
         let r = Math.floor(Math.random()*numberOfCards);
         let numCard = Cartes[r];
         let fila = numCard/100;
@@ -26,13 +26,13 @@ function inicializeSets (numberOfPlayer) {
         if (colu == 0) colu = 13;
 
         if (fila == 5) {
-            $("#"+k+(colu+1)"-"+(14)).val("*");
-            $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
+            $("#"+k+(colu+1)+"-"+(14)).val("*");
+            $("#"+k+(colu+1)+"-"+(14)).addClass("jokerCards");
         }
         else {
-            if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
-            else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-            $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+            if ($("#"+k+(fila)+"-"+(colu)).val() == "") $("#"+k+(fila)+"-"+(colu)).val(colu);
+            else $("#"+k+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+            $("#"+k+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
         }
         
         Cartes.splice(r);
@@ -52,13 +52,13 @@ function takeCard (numberOfPlayer) {
     if (colu == 0) colu = 13;
 
     if (fila == 5) {
-        $("#"+k+(colu+1)"-"+(14)).val("*");
-        $("#"+k+(colu+1)"-"+(14)).addClass("jokerCards");
+        $("#"+k+(colu+1)+"-"+(14)).val("*");
+        $("#"+k+(colu+1)+"-"+(14)).addClass("jokerCards");
     }
     else {
-        if ($("#"+k+(fila)"-"+(colu)).val() == "") $("#"+k+(fila)"-"+(colu)).val(colu);
-        else $("#"+k+(fila)"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-        $("#"+k+(fila)"-"+(colu)).addClass(nomcolor[fila-1]);
+        if ($("#"+k+(fila)+"-"+(colu)).val() == "") $("#"+k+(fila)+"-"+(colu)).val(colu);
+        else $("#"+k+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
+        $("#"+k+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
     }
     
     Cartes.splice(r);
