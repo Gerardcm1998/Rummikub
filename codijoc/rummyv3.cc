@@ -23,9 +23,6 @@ string donarnomcarta (int num) {
 	else if (pal == 4) nompal = "Groc";
 	
 	//donem el nom al valor
-	//if (valor < 11 and valor != 0) nomvalor = std::to_string(valor);
-	//else if (valor == 11) nomvalor = "J";
-	//else if (valor == 12) nomvalor = "Q";
 	if (valor != 0) nomvalor = std::to_string(valor);
 	else nomvalor = "13";
 	
@@ -35,6 +32,7 @@ string donarnomcarta (int num) {
 	return nomcarta;
 }
 
+
 int main () {
     cout << "BENVINGUT AL RUMMY!!!" << endl;
     int aleatori;
@@ -43,6 +41,7 @@ int main () {
     cout << "Quants jugadors sou?" << endl;
     int n;
     cin >> n;
+   
     //Creem els jugadors
     vector<string> Jugadors(n);
     for (int i = 0; i < n; ++i) {
@@ -69,16 +68,47 @@ int main () {
 	for (int i = 0; i < n; ++i) {
 		string nomjugador = Jugadors[i];
 		ofstream myfile;
-		myfile.open( nomjugador+".txt" );
-		myfile << "Aquestes són les teves cartes inicials:" << endl;
-		for (int j = 0; j < 14; ++j) {
+		myfile.open( nomjugador+".csv" );
+		vector< vector<int>> V(5, vector<int> (13));
+		vector<string> nomcolor;
+		nomcolor = {"vermell","blau","verd","groc","joker"};	
+		for (int j = 0; j < 13; ++j) {
 			int l = Cartes.size();
 			int r = (rand() % l)*aleatori % l;
-			myfile << donarnomcarta(Cartes[r]) << endl;
+			int c = Cartes[r];
+			int pal = c/100;
+			int valor = c-(100*pal);
+			if (pal == 1) {
+				if (V[0][valor] != 0) V[0][valor] = (valor+1)*1000+(valor+1);
+				else V[0][valor] = valor+1;
+			}
+			else if (pal == 2) {
+				if (V[1][valor] != 0) V[1][valor] = (valor+1)*1000+(valor+1);
+				else V[1][valor] = valor+1;
+			}
+			else if (pal == 3) {
+				if (V[2][valor] != 0) V[2][valor] = (valor+1)*1000+(valor+1);
+				else V[2][valor] = valor+1;
+			}
+			else if (pal == 4) {
+				if (V[3][valor] != 0) V[3][valor] = (valor+1)*1000+(valor+1);
+				else V[3][valor] = valor+1;
+			}
+			else {
+				V[4][valor] = 0;
+			}
 			int intermedi = Cartes[l-1];
 			Cartes[l-1] = Cartes[r];
 			Cartes[r] = intermedi;
 			Cartes.pop_back();
+		}
+		for (int i = 0; i < 5; ++i) {
+			myfile << nomcolor[i];
+			for (int j = 0; j < 13; ++j) {
+				if (V[i][j] == 0) myfile << "," << "";
+				else myfile << "," << V[i][j];
+			}
+			myfile << endl;
 		}
 		myfile.close();
 	}
