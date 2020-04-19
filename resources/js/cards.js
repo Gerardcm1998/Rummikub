@@ -52,21 +52,11 @@ function initializeSets(player) {
 
         //si és el joker o si és una carta qualsevol
         if (fila == 5) {
-            /*
-            $("#player"+k+"-"+(colu)+"-"+(14)).val("*");
-            $("#player"+k+"-"+(colu)+"-"+(14)).addClass("jokerCards");
-            */
             cellOf(k,colu+1,14).text("*");
             console.log ("* a "+(colu+1))
             cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
 
         } else {
-            /*
-            if ($("#player"+k+"-"+(fila)+"-"+(colu)).val() == "") $("#player"+k+"-"+(fila)+"-"+(colu)).val(colu);
-            else $("#player"+k+"-"+(fila)+"-"+(colu)).val((colu+1)+"&"+(colu+1));            
-            $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
-            */
-
             if (cellOf(k,fila,colu).text() == "") {
                 cellOf(k,fila,colu).text(colu);
             } else {
