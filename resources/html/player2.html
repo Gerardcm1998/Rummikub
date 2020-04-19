@@ -11,7 +11,10 @@
     <title>NAME2 TOKENS</title>
     <script>
         $( document ).ready(function() {
-            initializePlayersHtml("player2Board",2);
+            document.title = "Cartes de "+ getPlayerName(2);
+            initializePlayer("player2Board",2);
+            var Cards = getCards();
+            window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
         }); 
     </script>
 

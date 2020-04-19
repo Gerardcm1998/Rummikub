@@ -1,24 +1,45 @@
-var numberOfPlayers;
 
-var player1;
-var player2; 
-var player3;
-var player4;
+function setNumberOfPlayers(np) {
+    sessionStorage.setItem("numberOfPlayers", np);
+}
+
+function getNumberOfPlayers() {
+    return parseInt(sessionStorage.getItem("numberOfPlayers"));
+}
 
 function setPlayerNames() {
+    var numberOfPlayers = getNumberOfPlayers();
     for (i=1; i<=numberOfPlayers;++i) {
-       if (i==1) player1 = $("#playerName1").val();
-       else if (i==2) player2 = $("#playerName2").val();
-       else if (i==3) player3 = $("#playerName3").val();
-       else if (i==4) player4 = $("#playerName4").val();
+        var player = $("#playerName"+i).val();
+        sessionStorage.setItem("Player"+i, player);
     }
 }
 
 function getPlayerName(n) {
-    if (n<=numberOfPlayers) {
-        if (n==1) return player1;
-        if (n==2) return player2;
-        if (n==3) return player3;
-        if (n==4) return player4;
+    var numberOfPlayers = getNumberOfPlayers();
+    if (n <= numberOfPlayers) {
+        return sessionStorage.getItem("Player"+n);
     }
+}
+
+/**
+ * Creem la taula on escriurem el set del jugador, en el HTML que hem obert
+ * @param {Id del div del panell del jugador, de format "player_Board"} divId 
+ * @param {Numero de jugador} playerNumber 
+ */
+function initializePlayer(divId, playerNumber) {
+    var table = "<table>";
+    for (i = 1; i <= 4; ++i) {
+        table += "<tr>";
+        for (j = 1; j <= 14; ++j) {
+			if (i == 1 || i == 4) {
+				if (j == 14) continue;
+			}
+           	table += "<td id='player"+playerNumber+"-"+i+"-"+j+"'></td>";
+        }
+        table += "</tr>";
+    }
+    table += "</table>";
+    $("#"+divId).html(table);
+    initializeSets(playerNumber);
 }
