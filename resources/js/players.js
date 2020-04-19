@@ -44,6 +44,6 @@ function initializePlayer(n) {
         table += "</tr>";
     }
     table += "</table>";
-    $(`#player${n}Board`).html(table);
+    $(`#player${n}Panel`).html(table);
     initializeSets(n);
 }
