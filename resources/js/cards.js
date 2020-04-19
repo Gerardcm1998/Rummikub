@@ -67,7 +67,7 @@ function takeCard (player) {
     let numberOfCards = Cartes.size();
     let nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     let r = Math.floor(Math.random()*numberOfCards);
-
+    console.log("oli");
     let numCard = Cartes[r];
     let fila = numCard/100;
     let colu = numCard-(100*pal);
