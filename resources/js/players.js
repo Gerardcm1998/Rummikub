@@ -27,19 +27,23 @@ function getPlayerName(n) {
  * @param {Id del div del panell del jugador, de format "player_Board"} divId 
  * @param {Numero de jugador} playerNumber 
  */
-function initializePlayer(divId, playerNumber) {
+function initializePlayer(n) {
+
+    document.title = "Cartes de "+ getPlayerName(n);
+    $(`#titlePlayer${n}`).text(`Cartes de ${getPlayerName(n)}`);
+
     var table = "<table>";
-    for (i = 1; i <= 4; ++i) {
+    for (row = 1; row <= 4; ++row) {
         table += "<tr>";
-        for (j = 1; j <= 14; ++j) {
-			if (i == 1 || i == 4) {
-				if (j == 14) continue;
+        for (col = 1; col <= 14; ++col) {
+            if (row == 1 || row == 4) {
+                if (col == 14) continue;
 			}
-           	table += "<td id='player"+playerNumber+"-"+i+"-"+j+"'></td>";
+            table += `<td id='player${n}-${row}-${col}'></td>`;
         }
         table += "</tr>";
     }
     table += "</table>";
-    $("#"+divId).html(table);
-    initializeSets(playerNumber);
+    $(`#player${n}Board`).html(table);
+    initializeSets(n);
 }

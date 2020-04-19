@@ -36,13 +36,15 @@ function cellOf(player,row,col) {
     return $("#player"+player+"-"+row+"-"+col);
 }
 
-//Creem els sets inicials i els escrivim a l'HTML de cada jugador
+/**
+ * Creem els sets inicials i els escrivim a l'HTML de cada jugador
+ * @param {player number} player 
+ */
 function initializeSets(player) {
     var Cards = getCards();
     var k = player;
     var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     for (j = 0; j < 14; ++j) {
-        console.log("Iteracio "+j)
         var numberOfCards = Cards.length;
         var r = Math.floor(Math.random()*numberOfCards);
         var numCard = Cards[r];
@@ -53,7 +55,6 @@ function initializeSets(player) {
         //si és el joker o si és una carta qualsevol
         if (fila == 5) {
             cellOf(k,colu+1,14).text("*");
-            console.log ("* a "+(colu+1))
             cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
 
         } else {
@@ -62,7 +63,6 @@ function initializeSets(player) {
             } else {
                 cellOf(k,fila,colu).text(colu+"&"+colu);
             }
-            console.log(colu+" a "+fila +'-'+colu);
             cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
         }
         Cards.splice(r,1);
@@ -70,7 +70,10 @@ function initializeSets(player) {
     setCards(Cards);
 }
 
-//Agafem una carta nova i la posem a l'HTML del jugador
+/**
+ * Agafem una carta nova i la posem a l'HTML del jugador
+ * @param {player number} player 
+ */
 function takeCard (player) {
     var Cards = getCards();
     var k = player;
@@ -85,15 +88,16 @@ function takeCard (player) {
 
     //si és el joker o si és una carta qualsevol
     if (fila == 5) {
-        $("#player"+k+"-"+(fila+1)+"-"+(14)).text("*");
-        $("#player"+k+"-"+(fila+1)+"-"+(14)).addClass("jokerCards");
+        cellOf(k,fila+1,14).text("*");
+        cellOf(k,fila+1,14).addClass("jokerCards");
+    } else {
+        if  (cellOf(k,fila,colu).text() == "") {
+            cellOf(k,fila,colu).text(colu);
+        } else {
+            cellOf(k,fila,colu).text((colu+1)+"&"+(colu+1));
+        }
+        cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
     }
-    else {
-        if  ($("#player"+k+"-"+(fila)+"-"+(colu)).text() == "") $("#player"+k+"-"+(fila)+"-"+(colu)).text(colu);
-        else $("#player"+k+"-"+(fila)+"-"+(colu)).text((colu+1)+"&"+(colu+1));            
-        $("#player"+k+"-"+(fila)+"-"+(colu)).addClass(nomcolor[fila-1]);
-    }
-    
     Cards.slice(r);
     setCards(Cards);
 }
