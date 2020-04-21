@@ -1,22 +1,22 @@
 
 function setSessionBoard() {
-    sessionStorage.setItem("Board",$("#tableDiv").html());
+    sessionStorage.setItem("Board",$("#boardDiv").html());
 }
 
 function getSessionBoard() {
-    $("#tableDiv").html(sessionStorage.getItem("Board"));
+    $("#boardDiv").html(sessionStorage.getItem("Board"));
 }
 
 function setSessionPanel() {
     sessionStorage.setItem("Panel1",$("#cardsPanel1").html());
     sessionStorage.setItem("Panel2",$("#cardsPanel2").html());
-    sessionStorage.setItem("JokerPanel",$("#jokerPanel").html());
+    sessionStorage.setItem("PanelJokers",$("#jokerPanel").html());
 }
 
 function getSessionPanel() {
     $("#cardsPanel1").html(sessionStorage.getItem("Panel1"));
     $("#cardsPanel2").html(sessionStorage.getItem("Panel2"));
-    $("#jokerPanel").html(sessionStorage.getItem("JokerPanel"));
+    $("#jokerPanel").html(sessionStorage.getItem("PanelJokers"));
 }
 
 

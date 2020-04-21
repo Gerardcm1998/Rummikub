@@ -10,7 +10,14 @@ function allowDrop(event) {
 
 function drop(event) {
     event.preventDefault();
-    var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
+    var draggedId = event.dataTransfer.getData("Text");
+    
+    var dragged = $(document.getElementById(draggedId));
+    var dropped = $(event.target);
+    var aux = $("#aux");
+
+    aux.insertBefore(dropped)
+    dropped.insertBefore(dragged);
+    dragged.insertAfter(aux);    
 }
 

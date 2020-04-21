@@ -11,6 +11,11 @@ td, tr {
     text-align: center;
 }
 
+span {
+    width: max-content;
+    height: max-content;
+}
+
 .redCards {
     background-color: rgba(255, 65, 65, 0.568);
 }
@@ -25,4 +30,7 @@ td, tr {
 }
 .jokerCards {
     background-color: rgba(128, 128, 128, 0.356);
+}
+.emptyCards {
+    
 }

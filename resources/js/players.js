@@ -28,22 +28,8 @@ function getPlayerName(n) {
  * @param {Numero de jugador} playerNumber 
  */
 function initializePlayer(n) {
-
     document.title = "Cartes de "+ getPlayerName(n);
     $(`#titlePlayer${n}`).text(`Cartes de ${getPlayerName(n)}`);
-
-    var table = "<table>";
-    for (row = 1; row <= 4; ++row) {
-        table += "<tr>";
-        for (col = 1; col <= 14; ++col) {
-            if (row == 1 || row == 4) {
-                if (col == 14) continue;
-			}
-            table += `<td id='player${n}-${row}-${col}'></td>`;
-        }
-        table += "</tr>";
-    }
-    table += "</table>";
-    $(`#player${n}Panel`).html(table);
+    generatePlayerPanelsHTML(n);
     initializeSets(n);
 }

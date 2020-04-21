@@ -34,3 +34,11 @@ h1 {
   width: 15%; 
   display: inline-block;
 }
+
+#aux {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
