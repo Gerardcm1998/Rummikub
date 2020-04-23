@@ -1,19 +1,17 @@
 
+/**
+ * Inicia i mostra els primers camps
+ */
 function play() {
     sessionStorage.clear();
-    hidePlayButton();
-    showNumberPlayersInput();
-}
-
-function hidePlayButton() {
     $("#playButtonDiv").hide();
-}
-
-function showNumberPlayersInput() {
     $("#playersDiv").show();
     $("#numberPlayersDiv").show();
 }
 
+/**
+ * Demana el nom de cada jugador
+ */
 function askPlayersName() {
     setNumberOfPlayers($("#numberOfPlayers").val());
     var numberOfPlayers = getNumberOfPlayers();
@@ -22,6 +20,9 @@ function askPlayersName() {
     getHTML("playerNamesInput");
 }
 
+/**
+ * Ensenya els links per a poder veure les cartes de cada jugador
+ */
 function showTokenLinks() {
     initializeCards();
     setPlayerNames();

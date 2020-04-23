@@ -1,4 +1,8 @@
 
+/**
+ * Genera codi HTML pel destí source
+ * @param {Div on emmagatzemar el html} source 
+ */
 function getHTML(source) {
     var numberOfPlayers = getNumberOfPlayers();
     var code = "";
@@ -12,17 +16,17 @@ function getHTML(source) {
             code += "<br>";
         break;
 
-        case "openTokens" : 
-            for (i=1; i<=numberOfPlayers;++i) {
-                playerName = getPlayerName(i);
-                code += `<a href="./resources/html/player${i}.html" onclick="$(this).prop('style','display:none')" target="_blank" class="playerNotSelected">${playerName}</a>`
-            }
-        break;
-
         case "playerNames": 
             for (i=1; i <= numberOfPlayers; ++i) {
                 var playerName = getPlayerName(i);
                 code += `<label id="player${i}" class="playerNotSelected">${playerName}</label>`;
+            }
+        break;
+
+        case "openTokens" : 
+            for (i=1; i<=numberOfPlayers;++i) {
+                playerName = getPlayerName(i);
+                code += `<a href="./resources/html/player${i}.html" onclick="$(this).prop('style','display:none')" target="_blank" class="playerNotSelected">${playerName}</a>`
             }
         break;
         
@@ -38,33 +42,14 @@ function getHTML(source) {
             code += "</table>";
         break;
 
-        case "" :
-            if (n != 0) {
-                code = "<table>";
-                for (row = 1; row <= 4; ++row) {
-                    code += "<tr>";
-                    for (col = 1; col <= 13; ++col) {
-                        if (row==1) {
-                            code += `<td id="panel${n}-${row}-${col}" class='redCards' draggable="true" ondragstart="dragStart(event)" > `;
-                        } else if (row==2) {
-                            code += `<td id="panel${n}-${row}-${col}" class='blueCards' draggable="true" ondragstart="dragStart(event)" > `;
-                        } else if (row==3) {
-                            code += `<td id="panel${n}-${row}-${col}" class='greenCards' draggable="true" ondragstart="dragStart(event)" > `;
-                        } else if (row==4) {
-                            code += `<td id="panel${n}-${row}-${col}" class='yellowCards' draggable="true" ondragstart="dragStart(event)"> `;
-                        }
-                        code += col+"</td>";
-                    }
-                    code += "</tr>";
-                }
-                code += "</table>";
-            } else
-        break;
-
     }
     $("#"+source).html(code);
 }
 
+/**
+ * Crea el panell inferior amb les cartes movibles
+ * @param {nuumero del panell} n 
+ */
 function createPanel(n) {
     $("#cardPanelsDiv").show();
     var code = "<table>";
@@ -96,6 +81,10 @@ function createPanel(n) {
     }
 }
 
+/**
+ * Genera el HTML dels panells de cates del jugador n
+ * @param {numero de jugador} n 
+ */
 function generatePlayerPanelsHTML(n) {
     var code = "<table>";
     for (row = 1; row <= 4; ++row) {

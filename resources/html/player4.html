@@ -14,10 +14,17 @@
     </title>
     <script>
         $( document ).ready(function() {
-            initializePlayer(4);
-            var Cards = getCards();
-            window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
-            window.opener.sessionStorage.setItem("player4Panel", $("#player4Panel").html());
+            var n = 4;
+            document.title = "Cartes de "+ getPlayerName(n);
+            $(`#titlePlayer${n}`).text(`Cartes de ${getPlayerName(n)}`);
+            if (sessionStorage.getItem(`player${n}Panel`) == null) {
+                initializePlayer(n);
+                var Cards = getCards();
+                window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
+                window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
+            } else {
+                $(`#player${n}Panel`).html(sessionStorage.getItem(`player${n}Panel`));
+            }
         }); 
     </script>
 

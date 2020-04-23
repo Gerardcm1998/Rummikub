@@ -1,12 +1,21 @@
-
+/**
+ * Guara el nombre de jugadors a sessió
+ * @param {nombre de jugadors} np 
+ */
 function setNumberOfPlayers(np) {
     sessionStorage.setItem("numberOfPlayers", np);
 }
 
+/**
+ * Recupera el nombre de jugadors de sessió
+ */
 function getNumberOfPlayers() {
     return parseInt(sessionStorage.getItem("numberOfPlayers"));
 }
 
+/**
+ * Guarda el nom dels jugadors a sessió
+ */
 function setPlayerNames() {
     var numberOfPlayers = getNumberOfPlayers();
     for (i=1; i<=numberOfPlayers;++i) {
@@ -15,6 +24,10 @@ function setPlayerNames() {
     }
 }
 
+/**
+ * Recupera el nom del jugador n de sessió
+ * @param {numero de jugador} n 
+ */
 function getPlayerName(n) {
     var numberOfPlayers = getNumberOfPlayers();
     if (n <= numberOfPlayers) {
@@ -28,8 +41,6 @@ function getPlayerName(n) {
  * @param {Numero de jugador} playerNumber 
  */
 function initializePlayer(n) {
-    document.title = "Cartes de "+ getPlayerName(n);
-    $(`#titlePlayer${n}`).text(`Cartes de ${getPlayerName(n)}`);
     generatePlayerPanelsHTML(n);
     initializeSets(n);
 }

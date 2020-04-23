@@ -1,8 +1,14 @@
-
+/**
+ * Agafem les cartes restants de sessió
+ */
 function getCards() {
     return JSON.parse(sessionStorage.getItem("Cards"));
 }
 
+/**
+ * Guardem les cartes restants a sessió
+ * @param {Cartes restants} Cards 
+ */
 function setCards(Cards) {
     sessionStorage.setItem("Cards",JSON.stringify(Cards))
 }
@@ -27,7 +33,7 @@ function initializeCards() {
 
 
 /**
- * Take the cell row-col of player k
+ * Agafa la casella row-col del jugador player
  * @param {Player number} player 
  * @param {Row} row 
  * @param {Column} col 
