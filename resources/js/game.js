@@ -1,50 +1,28 @@
 
 /**
- * Guardem el taulell a sessió
+ * Canvia el torn si les cartes estan de manera correcte en el taulell. 
+ * En cas que no, retorna una alerta.
+ * @param {Id del jugador que finalitza el torn} actualPlayerId 
  */
-function setSessionBoard() {
-    sessionStorage.setItem("Board",$("#boardDiv").html());
-}
-
-/**
- * Recuperem el taulell de sessió
- */
-function getSessionBoard() {
-    $("#boardDiv").html(sessionStorage.getItem("Board"));
-}
-
-/**
- * Guardem els panells de cartes de sessió
- */
-function setSessionPanel() {
-    sessionStorage.setItem("Panel1",$("#cardsPanel1").html());
-    sessionStorage.setItem("Panel2",$("#cardsPanel2").html());
-    sessionStorage.setItem("PanelJokers",$("#jokerPanel").html());
-}
-
-/**
- * Recuperem els panells de cartes de sessió
- */
-function getSessionPanel() {
-    $("#cardsPanel1").html(sessionStorage.getItem("Panel1"));
-    $("#cardsPanel2").html(sessionStorage.getItem("Panel2"));
-    $("#jokerPanel").html(sessionStorage.getItem("PanelJokers"));
-}
-
-/**
- * Obre la finestra del jugador per a introduir una carta al html del jugador 
- * en cas que el taulell sigui correcte
- * @param {id del jugador actual} actualPlayerId 
- */
-function stealToken(actualPlayerId) {
+function changeTurn () {
+    var actualPlayer = getSessionActualPlayer();
+    var numberOfPlayers = getNumberOfPlayers();
     if (ableToFinishTurn()) {
-        var playerNumber = parseInt(actualPlayerId.charAt(actualPlayerId.length-1));
-        window.open(`./resources/html/player${playerNumber}.html`,'_blank')
-
-        //TODO: Fer que la funcio takeCard afegeixi una carta a l'html del jugador
-
-        //takeCard(playerNumber);
-        changeTurn(actualPlayerId);
+        if ( ! movedCards()) {
+            stealToken(actualPlayer);
+        } else {
+            throwCards(actualPlayer);
+        }
+        $("#player"+actualPlayer).removeClass("playerSelected");
+        $("#player"+actualPlayer).addClass("playerNotSelected");
+        if (actualPlayer >= numberOfPlayers) {
+            startTurn(1);
+        } else {
+            startTurn(actualPlayer+1);
+        }
+    } else {
+        alert("El taulell no esta ben insertat!")
+        return;
     }
 }
 
@@ -58,26 +36,19 @@ function ableToFinishTurn() {
 }
 
 /**
- * Canvia el torn si les cartes estan de manera correcte en el taulell. 
- * En cas que no, retorna una alerta.
- * @param {Id del jugador que finalitza el torn} actualPlayerId 
+ * Booleà que indica si el jugador ha tirat cartes
  */
-function changeTurn (actualPlayerId) {
-    var actualPlayer = parseInt(actualPlayerId.charAt(actualPlayerId.length-1));
-    var numberOfPlayers = getNumberOfPlayers();
-    var isCorrectBoard = ableToFinishTurn();
-    if (!isCorrectBoard) {
-        alert("El taulell no esta ben insertat!")
-        return;
-    } else {
-        $("#player"+actualPlayer).removeClass("playerSelected");
-        $("#player"+actualPlayer).addClass("playerNotSelected");
-        if (actualPlayer >= numberOfPlayers) {
-            startTurn(1);
-        } else {
-            startTurn(actualPlayer+1);
-        }
-    }
+function movedCards() {
+    return !arraysEqual(getSessionMovedArray(),[]);
+}
+
+/**
+ * Obre el panell del jugador per a introduir una carta
+ * @param {numero de jugador} actualPlayer 
+ */
+function stealToken(actualPlayer) {
+    window.open(`./resources/html/player${actualPlayer}.html`,'_blank');
+    takeCard(actualPlayer);
 }
 
 /**
@@ -88,7 +59,9 @@ function startTurn(player) {
     $("#player"+player).removeClass("playerNotSelected");
     $("#player"+player).addClass("playerSelected");
     setSessionBoard();
-    setSessionPanel();
+    setSessionPanels();
+    setSessionActualPlayer();
+    setSessionMovedArray([]);
 }
 
 /**
@@ -96,6 +69,7 @@ function startTurn(player) {
  */
 function undo() {
     getSessionBoard();
-    getSessionPanel();
+    getSessionPanels();
+    setSessionMovedArray([]);
 }
 

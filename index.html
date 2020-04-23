@@ -13,6 +13,8 @@
   <script src="./resources/js/cards.js"></script>
   <script src="./resources/js/table.js"></script>
   <script src="./resources/js/html-generator.js"></script>
+  <script src="./resources/js/session.js"></script>
+  <script src="./resources/js/utils.js"></script>
   <title>RUMMIKUB NO-ONLINE</title>
 </head>
 
@@ -60,18 +62,21 @@
   </div>
 
   <div id="panel" class="hiddenCentered" style="margin: auto; width: 100%;">
-    <div id="stealToken" style="width: 15%; display: inline-block;">
-      <button onclick='stealToken($(".playerSelected").prop("id"))'>STEAL TOKEN</label>
-    </div>  
+
+    <div style="width: 15%; display: inline-block;"></div>  
+
     <div id ="boardDiv" style="width: 65%; display: inline-block;">
       <!-- Table generated from JavaScript-->
     </div>
+    
     <div style="width: 15%; display: inline-block;">
-      <button onclick='changeTurn($(".playerSelected").prop("id"))'>TURN FINISHED</button>
+      <button onclick='changeTurn()'>TURN FINISHED</button>
     </div>
+
     <div style="width: 15%; display: inline-block;">
       <button onclick='undo()'>UNDO</button>
     </div>
+
   </div>
   
   <div id="cardPanelsDiv" class="hiddenCentered" style="width: 90%; margin: auto; margin-top: 30px">

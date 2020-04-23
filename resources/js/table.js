@@ -16,9 +16,21 @@ function drop(event) {
     var dropped = $(event.target);
     var aux = $("#aux");
 
-    aux.insertBefore(dropped)
-    dropped.insertBefore(dragged);
-    dragged.insertAfter(aux);  
-    $("#auxDiv").append(aux)
-}
+    var drop = true;
+    if (dropped.parent().parent().parent().parent().prop('id') == 'boardDiv') {
+        if (dragged.parent().parent().parent().parent().prop('id') != 'boardDiv') {
+            putDraggedOnMoveds(dragged);
+        }
+    } else {
+        if (dragged.parent().parent().parent().parent().prop('id') == 'boardDiv') {
+            drop = removeDraggedFromMoveds(dragged);
+        }
+    }
+    if (drop) {
+        aux.insertBefore(dropped);
+        dropped.insertBefore(dragged);
+        dragged.insertAfter(aux);  
+        $("#auxDiv").append(aux);
+    }
 
+}

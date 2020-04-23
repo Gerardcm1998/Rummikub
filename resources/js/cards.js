@@ -1,17 +1,3 @@
-/**
- * Agafem les cartes restants de sessió
- */
-function getCards() {
-    return JSON.parse(sessionStorage.getItem("Cards"));
-}
-
-/**
- * Guardem les cartes restants a sessió
- * @param {Cartes restants} Cards 
- */
-function setCards(Cards) {
-    sessionStorage.setItem("Cards",JSON.stringify(Cards))
-}
 
 /**
  * Creem el vector de 106 Cards 
@@ -28,9 +14,8 @@ function initializeCards() {
 		
 		Cards[i] = pal*100 + (i+1)%13;
     }	
-    setCards(Cards);
+    setSessionCards(Cards);
 }
-
 
 /**
  * Agafa la casella row-col del jugador player
@@ -47,7 +32,7 @@ function cellOf(player,row,col) {
  * @param {player number} player 
  */
 function initializeSets(player) {
-    var Cards = getCards();
+    var Cards = getSessionCards();
     var k = player;
     var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
     for (j = 0; j < 14; ++j) {
@@ -57,53 +42,55 @@ function initializeSets(player) {
         var fila = Math.trunc(numCard/100);
         var colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
-
-        //si és el joker o si és una carta qualsevol
-        if (fila == 5) {
-            cellOf(k,colu+1,14).text("*");
-            cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
-
-        } else {
-            if (cellOf(k,fila,colu).text() == "") {
-                cellOf(k,fila,colu).text(colu);
-            } else {
-                cellOf(k,fila,colu).text(colu+"&"+colu);
-            }
-            cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
-        }
+        putCard(k,fila,colu,nomcolor)
         Cards.splice(r,1);
     }
-    setCards(Cards);
+    setSessionCards(Cards);
+}
+
+/**
+ * Introdueix la carta al panell del jugador k a la fila i columna corresponents i amb la seva classe.
+ * @param {numero de jugador} k 
+ * @param {fila} fila 
+ * @param {columna} colu 
+ * @param {array de class segons el color} nomcolor 
+ */
+function putCard(k,fila,colu,nomcolor) {
+    if (fila == 5) { // Nomes hi ha les cartes 501 i 502, que son jokers
+        cellOf(k,colu+1,14).text("*");
+        cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
+    } else {
+        if (cellOf(k,fila,colu).text() == "") {
+            cellOf(k,fila,colu).text(colu);
+        } else {
+            cellOf(k,fila,colu).text(colu+"|"+colu);
+        }
+        cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
+    }
 }
 
 /**
  * Agafem una carta nova i la posem a l'HTML del jugador
- * @param {player number} player 
+ * @param {player number} player
  */
-function takeCard (player) {
-    var Cards = getCards();
+function takeCard(player) {
+    var Cards = getSessionCards();
     var k = player;
     var numberOfCards = Cards.length;
-    var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
-    var r = Math.floor(Math.random()*numberOfCards);
-
+    var nomcolor = ["redCards", "blueCards", "greenCards", "yellowCards", "jokerCards"];
+    var r = Math.floor(Math.random() * numberOfCards);
     var numCard = Cards[r];
-    var fila = numCard/100;
-    var colu = numCard-(100*pal);
+    var fila = Math.trunc(numCard/100);
+    var colu = numCard-(100*fila);
     if (colu == 0) colu = 13;
-
-    //si és el joker o si és una carta qualsevol
-    if (fila == 5) {
-        cellOf(k,fila+1,14).text("*");
-        cellOf(k,fila+1,14).addClass("jokerCards");
-    } else {
-        if  (cellOf(k,fila,colu).text() == "") {
-            cellOf(k,fila,colu).text(colu);
-        } else {
-            cellOf(k,fila,colu).text((colu+1)+"&"+(colu+1));
-        }
-        cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
-    }
-    Cards.slice(r);
-    setCards(Cards);
+    putCard(k,fila,colu,nomcolor);
+    Cards.splice(r, 1);
+    setSessionCards(Cards);
+}
+/**
+ * Treu les cartes que el jugador ha tirat
+ * @param {numero de jugador} player 
+ */
+function throwCards(player) {
+    // TODO Eliminar cartes del panell del jugador
 }

@@ -43,6 +43,7 @@ function start() {
     createBoard();
     createPanels();
     startTurn(1);
+    setSessionMovedArray([]);
 }
 
 /**
