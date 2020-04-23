@@ -18,6 +18,7 @@ function drop(event) {
 
     aux.insertBefore(dropped)
     dropped.insertBefore(dragged);
-    dragged.insertAfter(aux);    
+    dragged.insertAfter(aux);  
+    $("#auxDiv").append(aux)
 }
 
