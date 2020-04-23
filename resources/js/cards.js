@@ -18,16 +18,6 @@ function initializeCards() {
 }
 
 /**
- * Agafa la casella row-col del jugador player
- * @param {Player number} player 
- * @param {Row} row 
- * @param {Column} col 
- */
-function cellOf(player,row,col) {
-    return $("#player"+player+"-"+row+"-"+col);
-}
-
-/**
  * Creem els sets inicials i els escrivim a l'HTML de cada jugador
  * @param {player number} player 
  */
