@@ -24,7 +24,8 @@ function initializeCards() {
 function initializeSets(player) {
     var Cards = getSessionCards();
     var k = player;
-    var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];	
+    var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];
+    setSessionPlayerCards(player,[]);
     for (j = 0; j < 14; ++j) {
         var numberOfCards = Cards.length;
         var r = Math.floor(Math.random()*numberOfCards);
@@ -32,7 +33,7 @@ function initializeSets(player) {
         var fila = Math.trunc(numCard/100);
         var colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
-        putCard(k,fila,colu,nomcolor)
+        putCard(k,fila,colu,nomcolor);
         Cards.splice(r,1);
     }
     setSessionCards(Cards);
@@ -49,6 +50,7 @@ function putCard(k,fila,colu,nomcolor) {
     if (fila == 5) { // Nomes hi ha les cartes 501 i 502, que son jokers
         cellOf(k,colu+1,14).text("*");
         cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
+        setSessionPlayerCard(k,fila,colu);
     } else {
         if (cellOf(k,fila,colu).text() == "") {
             cellOf(k,fila,colu).text(colu);
@@ -56,6 +58,7 @@ function putCard(k,fila,colu,nomcolor) {
             cellOf(k,fila,colu).text(colu+"|"+colu);
         }
         cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
+        setSessionPlayerCard(k,fila,colu);
     }
 }
 

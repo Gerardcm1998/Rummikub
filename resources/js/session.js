@@ -127,6 +127,37 @@ function setSessionMovedArray(moved) {
 }
 
 /**
+ * Afegeix la carta fila-columna a l'array de cartes del jugador 
+ * @param {numero jugador} player 
+ * @param {fila} row 
+ * @param {columna} col 
+ */
+function setSessionPlayerCard(player,row,col) {
+    var cards = getSessionPlayerCards(player);
+    if (row == 5) {
+        console.log(`player ${player} has obtained a joker`)
+        cards.push(`joker`);
+    } else {
+        var card = cellOf(player,row,col);
+        console.log(`putting card ${card.prop('id')} into player ${player} cards`);
+        cards.push(`${row}-${col}`);
+    }
+    setSessionPlayerCards(player,cards);
+}
+
+function setSessionPlayerCards(player, obj) {
+    sessionStorage.setItem(`player${player}Cards`,JSON.stringify(obj));
+}
+
+/**
+ * Retorna l'array de cartes del jugador n
+ * @param {numero jugador} n 
+ */
+function getSessionPlayerCards(n) {
+    return JSON.parse(sessionStorage.getItem(`player${n}Cards`));
+}
+
+/**
  * Introdueix la carta moguda al vector de moguts
  * @param {carta moguda} dragged 
  */

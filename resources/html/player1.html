@@ -25,8 +25,10 @@
                 takeCard(n);
             }
             var Cards = getSessionCards();
+            var playerCards = getSessionPlayerCards(n);
             window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
             window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
+            window.opener.sessionStorage.setItem(`player${n}Cards`, JSON.stringify(playerCards));
         }); 
     </script>
 

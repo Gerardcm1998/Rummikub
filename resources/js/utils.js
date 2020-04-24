@@ -17,3 +17,11 @@ function arraysEqual(a1,a2) {
 function cellOf(player,row,col) {
     return $("#player"+player+"-"+row+"-"+col);
 }
+
+/**
+ * Retorna en quina taula està el <td>
+ * @param {objecte} object 
+ */
+function parentOf(object) {
+    return object.parent().parent().parent().parent().prop('id');
+}
