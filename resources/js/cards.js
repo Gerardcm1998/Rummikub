@@ -33,7 +33,7 @@ function initializeSets(player) {
         var fila = Math.trunc(numCard/100);
         var colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
-        putCard(k,fila,colu,nomcolor);
+        putCard(k,fila,colu,nomcolor,true);
         Cards.splice(r,1);
     }
     setSessionCards(Cards);
@@ -46,12 +46,12 @@ function initializeSets(player) {
  * @param {columna} colu 
  * @param {array de class segons el color} nomcolor 
  */
-function putCard(k,fila,colu,nomcolor) {
+function putCard(k,fila,colu,nomcolor, initializing) {
     if (fila == 5) { // Nomes hi ha les cartes 501 i 502, que son jokers
         cellOf(k,colu+1,14).text("*");
         cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
-        alert(`New Card: Joker`)
+        if (!initializing) {alert(`New Card: Joker`)}
     } else {
         if (cellOf(k,fila,colu).text() == "") {
             cellOf(k,fila,colu).text(colu);
@@ -61,7 +61,7 @@ function putCard(k,fila,colu,nomcolor) {
         cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
 
-        alert(`New Card: ${colu} ${nomcolor[fila-1]}`)
+        if (!initializing) {alert(`New Card: ${colu} ${nomcolor[fila-1]}`)}
     }
 }
 
@@ -79,7 +79,7 @@ function takeCard(player) {
     var fila = Math.trunc(numCard/100);
     var colu = numCard-(100*fila);
     if (colu == 0) colu = 13;
-    putCard(k,fila,colu,nomcolor);
+    putCard(k,fila,colu,nomcolor,false);
     Cards.splice(r, 1);
     setSessionCards(Cards);
 }
