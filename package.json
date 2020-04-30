@@ -1,6 +1,6 @@
 {
-  "name": "screen",
-  "version": "1.0.0",
+  "name": "rummikub",
+  "version": "1.0.1",
   "description": "Rummy Project.",
   "scripts": {
     "lite": "lite-server --port 10001",

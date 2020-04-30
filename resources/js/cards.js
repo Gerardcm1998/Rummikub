@@ -51,7 +51,6 @@ function putCard(k,fila,colu,nomcolor, initializing) {
         cellOf(k,colu+1,14).text("*");
         cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
-        if (!initializing) {alert(`New Card: Joker`)}
     } else {
         if (cellOf(k,fila,colu).text() == "") {
             cellOf(k,fila,colu).text(colu);
@@ -60,9 +59,12 @@ function putCard(k,fila,colu,nomcolor, initializing) {
         }
         cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
-
-        if (!initializing) {alert(`New Card: ${colu} ${nomcolor[fila-1]}`)}
     }
+
+    if (! initializing) {
+        fila == 5 ? alert(`New card: Joker`) : alert(`New card: ${colu} ${nomcolor[fila-1]}`);
+    }
+
 }
 
 /**
@@ -79,6 +81,7 @@ function takeCard(player) {
     var fila = Math.trunc(numCard/100);
     var colu = numCard-(100*fila);
     if (colu == 0) colu = 13;
+
     putCard(k,fila,colu,nomcolor,false);
     Cards.splice(r, 1);
     setSessionCards(Cards);
