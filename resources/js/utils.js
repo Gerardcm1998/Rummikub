@@ -15,7 +15,7 @@ function arraysEqual(a1,a2) {
  * @param {Column} col 
  */
 function cellOf(player,row,col) {
-    return $("#player"+player+"-"+row+"-"+col);
+    return $(`#player${player}-${row}-${col}`);
 }
 
 /**
