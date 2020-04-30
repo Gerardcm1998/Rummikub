@@ -51,6 +51,7 @@ function putCard(k,fila,colu,nomcolor) {
         cellOf(k,colu+1,14).text("*");
         cellOf(k,colu+1,14).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
+        alert(`New Card: Joker`)
     } else {
         if (cellOf(k,fila,colu).text() == "") {
             cellOf(k,fila,colu).text(colu);
@@ -59,6 +60,8 @@ function putCard(k,fila,colu,nomcolor) {
         }
         cellOf(k,fila,colu).addClass(nomcolor[fila-1]);
         setSessionPlayerCard(k,fila,colu);
+
+        alert(`New Card: ${colu} ${nomcolor[fila-1]}`)
     }
 }
 
