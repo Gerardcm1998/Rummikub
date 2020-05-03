@@ -4,7 +4,8 @@
   "description": "Rummy Project.",
   "scripts": {
     "lite": "lite-server --port 10001",
-    "start": "npm run lite"
+    "web": "http-server",
+    "start": "npm run web"
   },
   "author": "Geri&Klau",
   "license": "ISC",
