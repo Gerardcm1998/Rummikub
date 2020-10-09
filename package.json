@@ -5,7 +5,7 @@
   "scripts": {
     "lite": "lite-server --port 10001",
     "web": "http-server",
-    "start": "npm run web"
+    "start": "npm run lite"
   },
   "author": "Geri&Klau",
   "license": "ISC",

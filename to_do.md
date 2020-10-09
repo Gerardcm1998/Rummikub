@@ -1,6 +1,9 @@
 
 # TO DO LIST
 
+### 
+    Si nomes tens una carta d'un tipus, nomes en pots moure una 
+
 ### game.js -> ableToFinishTurn()
     Fer la comprovació de si totes les peces del taulell estan ben posades
 
