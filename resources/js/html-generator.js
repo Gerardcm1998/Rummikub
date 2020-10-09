@@ -10,7 +10,7 @@ function getHTML(source) {
         case "playerNamesInput" : 
             code = '<br>';
             for (i = 1; i <= numberOfPlayers; ++i) {
-                code += `<label for="player${i}">Player ${i}:</label>`;
+                code += `<label for="player${i}">Jugador ${i}:</label>`;
                 code += `<input id="playerName${i}" class="playersInput" type="text" name="playerName${i}"><br><br>`;
             }
             code += "<br>";
