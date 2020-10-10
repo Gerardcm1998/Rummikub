@@ -32,7 +32,7 @@ function initializePlayerSets(player) {
         var fila = Math.trunc(numCard/100);
         var colu = numCard-(100*fila);
         if (colu == 0) colu = 13;
-        putCard(player,fila,colu,nomcolor);
+        putCardIntoPlayerHTML(player,fila,colu,nomcolor);
         setSessionPlayerCard(player,fila,colu);
         Cards.splice(r,1);
     }
@@ -40,13 +40,13 @@ function initializePlayerSets(player) {
 }
 
 /**
- * Introdueix la carta al panell del jugador k a la fila i columna corresponents i amb la seva classe.
+ * Introdueix la carta al panell del jugador a la fila i columna corresponents i amb la seva classe.
  * @param {numero de jugador} player 
  * @param {fila} fila 
  * @param {columna} colu 
  * @param {array de class segons el color} nomcolor 
  */
-function putCard(player,fila,colu,nomcolor) {
+function putCardIntoPlayerHTML(player,fila,colu,nomcolor) {
     if (fila == 5) { // Nomes hi ha les cartes 501 i 502, que son jokers
         cellOf(player,colu+1,14).text("*"); 
         cellOf(player,colu+1,14).addClass(nomcolor[fila-1]);
@@ -80,7 +80,7 @@ function takeCard(player) {
     var colu = numCard-(100*fila);
     if (colu == 0) colu = 13;
     
-    putCard(player,fila,colu,nomcolor);
+    putCardIntoPlayerHTML(player,fila,colu,nomcolor);
     setSessionPlayerCard(player,fila,colu);
     Cards.splice(r, 1);
     setSessionCards(Cards);
@@ -88,8 +88,36 @@ function takeCard(player) {
 
 /**
  * Treu les cartes que el jugador ha tirat
- * @param {numero de jugador} player 
+ * @param {player number} player 
  */
-function throwCards(player) {
-    // TODO: Eliminar cartes del panell del jugador
+function throwCards(player) { //TODO
+    var moved = getSessionMovedArray();
+    
+}
+
+/**
+ * Introdueix la carta moguda al vector de moguts
+ * @param {dragged card} dragged 
+ */
+function putDraggedOnMoveds(dragged) {
+    console.log(`putting card ${dragged.prop('id')} in moveds`);
+    var moves = getSessionMovedArray();
+    moves.push(dragged.prop('id'));
+    setSessionMovedArray(moves);
+}
+
+/**
+ * Treu la carta moguda del vector de moguts
+ * @param {dragged card} dragged 
+ */
+function removeDraggedFromMoveds(dragged) {
+    console.log(`removing card ${dragged.prop('id')} from moveds`);
+    var moves = getSessionMovedArray();
+    var ind = moves.indexOf(dragged.prop('id'));
+    if (ind == -1) {
+        return false;
+    }
+    moves.splice(ind,1);
+    setSessionMovedArray(moves);
+    return true;
 }

@@ -16,8 +16,5 @@
 ### README
     redactar les instruccions del joc
 
-### 
-    fer que surti un quadre amb la ultima carta robada
-
 ###
     Al fer clic al nom del jugador que s'obrin les seves cartes

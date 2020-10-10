@@ -19,9 +19,9 @@ function cellOf(player,row,col) {
 }
 
 /**
- * Retorna en quina taula està el <td>
- * @param {objecte} object 
+ * Retorna l'id de la taula on es troba el <td>
+ * @param {objecte} td 
  */
-function parentOf(object) {
-    return object.parent().parent().parent().parent().prop('id');
+function parentOf(td) {
+    return td.parent().parent().parent().parent().prop('id');
 }

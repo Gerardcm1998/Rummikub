@@ -7,13 +7,14 @@
 function changeTurn () {
     var actualPlayer = getSessionActualPlayer();
     var numberOfPlayers = getNumberOfPlayers();
+    var moved = getSessionMovedArray();
     if (ableToFinishTurn()) {
-        if ( ! movedCards()) {
+        if ( arraysEqual(moved,[]) ) {
             openPlayer(actualPlayer);
         } else {
             throwCards(actualPlayer);
         }
-        $("#player"+actualPlayer).removeClass("playerSelected");
+        $("#player"+actualPlayer).removeClass("playerSelected"); 
         $("#player"+actualPlayer).addClass("playerNotSelected");
         if (actualPlayer >= numberOfPlayers) {
             startTurn(1);
@@ -33,13 +34,6 @@ function changeTurn () {
 function ableToFinishTurn() {
     //TODO: Fer la comprovació de si totes les peces del taulell estan ben posades
     return true;
-}
-
-/**
- * Booleà que indica si el jugador ha tirat cartes
- */
-function movedCards() {
-    return !arraysEqual(getSessionMovedArray(),[]);
 }
 
 /**
@@ -71,4 +65,3 @@ function undo() {
     getSessionPanels();
     setSessionMovedArray([]);
 }
-
