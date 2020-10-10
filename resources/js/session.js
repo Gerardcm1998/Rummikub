@@ -127,7 +127,7 @@ function setSessionMovedArray(moved) {
 }
 
 /**
- * Afegeix la carta fila-columna a l'array de cartes del jugador 
+ * Afegeix la carta fila-columna a l'array de cartes del jugador en sessió
  * @param {numero jugador} player 
  * @param {fila} row 
  * @param {columna} col 

@@ -9,7 +9,7 @@ function changeTurn () {
     var numberOfPlayers = getNumberOfPlayers();
     if (ableToFinishTurn()) {
         if ( ! movedCards()) {
-            stealToken(actualPlayer);
+            openPlayer(actualPlayer);
         } else {
             throwCards(actualPlayer);
         }
@@ -43,12 +43,11 @@ function movedCards() {
 }
 
 /**
- * Obre el panell del jugador per a introduir una carta
- * @param {numero de jugador} actualPlayer 
+ * Obre el panell del jugador 
+ * @param {numero de jugador} i 
  */
-function stealToken(actualPlayer) {
-    window.open(`./resources/html/player${actualPlayer}.html`,'_blank');
-    takeCard(actualPlayer);
+function openPlayer(i) {
+    window.open(`./resources/html/player${i}.html`,`player${i}`);
 }
 
 /**

@@ -26,7 +26,7 @@ function getHTML(source) {
         case "openTokens" : 
             for (i=1; i<=numberOfPlayers;++i) {
                 playerName = getPlayerName(i);
-                code += `<a href="./resources/html/player${i}.html" onclick="$(this).prop('style','display:none')" target="_blank" class="playerNotSelected">${playerName}</a>`
+                code += `<a href="./resources/html/player${i}.html" onclick="$(this).prop('style','display:none')" target="player${i}" class="playerNotSelected">${playerName}</a>`
             }
         break;
         
