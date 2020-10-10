@@ -54,28 +54,36 @@ function canDrag(dragged,dropped) {
 }
 
 /**
- * Booleà que retorna si el jugador actual te la carta que vol moure o no
- * @param {carta} card 
+ * Booleà que retorna si el jugador actual posseeix la carta que vol moure
+ * @param {carta en format "f-c" o "joker"} card 
  */
 function playerHasCard(card) {
     var player = getSessionActualPlayer();
-    var cards = getSessionPlayerCards(player);
+    var cards = getSessionPlayerCards(player); // format "f-c" o "joker"
     var ind = cards.indexOf(card);
-    if (ind == -1) return false;
-
-    if (cards.indexOf(card,ind+1) != -1) { // si té una segona carta igual
-
-    } else {
-        
+    if (ind == -1) {
+        return false;
     }
-    var moved = getSessionMovedArray();
-    // si la card està dins de moved, i només en te una (no te caracter |)-> return false;
-    //TODO: Tenir en compte no tirar una carta repetida que ja hagi mogut i que no tingui dos cops.
-    return  ind != -1;
+    var count = 1;
+    if (cards.indexOf(card,ind+1) != -1) { // si té una segona carta igual
+        ++count;
+    }
+    var moved = getSessionMovedArray(); // format "paneli-f-c" o "joker-i"
+    if(arraysEqual(moved,[])) {
+        return true;
+    }
+    var pos = -1, iter = 0;
+    c = moved.find(m => m.includes(card));
+    while (iter < count) {
+        pos = moved.indexOf(c,pos+1);
+        if (pos == -1) return true;
+        ++iter;
+    }
+    return false;
 }
 
 /**
- * Indica si el jugador intenta retornar al panell una carta que havia mogut o no
+ * Indica si la carta que el jugador intenta retornar al panell la havia tirat ell o no
  * @param {carta que es vol moure} card 
  */
 function playerHasMoved(card) {

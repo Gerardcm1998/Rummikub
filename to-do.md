@@ -1,14 +1,8 @@
 
 # TO DO LIST
 
-### 
-    Si nomes tens una carta d'un tipus, nomes en pots moure una 
-
 ### game.js -> ableToFinishTurn()
     Fer la comprovació de si totes les peces del taulell estan ben posades
-
-### game.js -> movedCards() 
-    Crear la funció que indiqui si el jugador ha tirat cartes
 
 ### cards.js -> throwCards()
     Treure les cartes que hagi tirat un jugador del seu html.
@@ -18,3 +12,6 @@
 
 ###
     Al fer clic al nom del jugador que s'obrin les seves cartes
+
+###
+    Crear la base de dades i fer la migració
