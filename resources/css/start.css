@@ -8,11 +8,18 @@ label {
     font-size: 30px;
 }
 
-.startDiv {
+.newGameDiv {
     margin: auto;
-    width: 200px;
+    width: 400px;
     height: 80px;
     display: block;
+}
+
+.joinGameDiv {
+    margin: auto;
+    height: 80px;
+    display: block;
+    text-align: center;
 }
 
 .startButton {
@@ -21,6 +28,15 @@ label {
     font-size: xx-large;
     background: blanchedalmond;
     border: 5px sienna double;
+}
+
+.startInput {
+    width: 30%;
+    height: inherit;
+    font-size: xx-large;
+    background: blanchedalmond;
+    border: 5px sienna double;
+    text-align: center;
 }
 
 .playersInput {

@@ -4,6 +4,32 @@
  * En cas que no, retorna una alerta.
  * @param {Id del jugador que finalitza el torn} actualPlayerId 
  */
+function changeTurnOld () {
+    var actualPlayer = getSessionActualPlayer();
+    var numberOfPlayers = getNumberOfPlayers();
+    var moved = getSessionMovedArray();
+    if (ableToFinishTurn()) {
+        if ( arraysEqual(moved,[]) ) {
+            openPlayer(actualPlayer);
+        } else {
+            throwCards(actualPlayer);
+        }
+        $("#player"+actualPlayer).removeClass("playerSelected"); 
+        $("#player"+actualPlayer).addClass("playerNotSelected");
+        if (actualPlayer >= numberOfPlayers) {
+            startTurn(1);
+        } else {
+            startTurn(actualPlayer+1);
+        }
+    } else {
+        alert("El taulell no esta ben insertat!")
+        return;
+    }
+}
+
+/**
+ * Change turn if cards are ok seted
+ */
 function changeTurn () {
     var actualPlayer = getSessionActualPlayer();
     var numberOfPlayers = getNumberOfPlayers();
@@ -64,4 +90,16 @@ function undo() {
     getSessionBoard();
     getSessionPanels();
     setSessionMovedArray([]);
+}
+
+/**
+ * Close DataBase
+ */
+function dataBaseDisconnect() {
+    db.close((err) => {
+        if (err) {
+        return console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
 }

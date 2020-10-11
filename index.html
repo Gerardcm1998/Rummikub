@@ -18,16 +18,56 @@
 </head>
 
 <body>
+  <!--Makes title and start buttons-->
   <div class="title">
     <h1>RUMMIKUB</h1>
   </div>
 
-  <div id="initialMargin" style="margin-top: 60px;"></div>
+  <div id="titleMargin" style="margin-top: 60px;"></div>
 
-  <div id="playButtonDiv" class="startDiv" >
-    <button class="startButton" onclick="play()">JUGAR</button>
+  <!--Div for start buttons: new game or join game-->
+  <div id="startGame">
+    <div id="newGame" class="newGameDiv" >
+      <button class="startButton" onclick="newGame()">NOVA PARTIDA</button>
+    </div>
+
+    <div id="initialMargin" style="margin-top: 40px;"></div>
+
+    <div id="joinGame" class="joinGameDiv" >
+      <label for="adsf">UNEIX-TE A UNA PARTIDA:</label>
+      <input type="text" class="startInput" ></input>
+      <button class="okButton" style="margin-left: 30px" onclick="askPlayerName()"> ► </button>
+    </div>    
   </div>
 
+  <!--Divs for showing and computing new ID-->
+  <div id="newIdDiv" class="hiddenCentered">
+    <div id="gameIdDiv" class="joinGameDiv" >
+      <label for="adsf">ID DE LA PARTIDA:</label>
+      <input id="gameNameId" type="text" disabled="true" class="startInput"></input>
+    </div>
+    
+    <div id="initialMargin" style="margin-top: 40px;"></div>
+
+    <div id="startButtonDiv" class="newGameDiv" >
+      <button class="startButton" onclick="askPlayerName()">COMENÇA</button>
+    </div>
+  </div>
+    
+  <!--Divs for asking the players name-->
+  <div id="newPlayerDiv" class="hiddenCentered">
+    <div id="gameIdDiv" class="joinGameDiv" >
+      <label for="adsf">INTRODUEIX EL TEU NOM:</label>
+      <input id="gameGetId" type="text" class="startInput"></input>
+    </div>
+    
+    <div id="initialMargin" style="margin-top: 40px;"></div>
+
+    <div id="startButtonDiv" class="newGameDiv" >
+      <button class="startButton" onclick="start()">COMENÇA</button>
+    </div>
+  </div>
+    
   <div id="playersDiv" class="hiddenCentered">
   
     <div id="numberPlayersDiv" class="hiddenCentered">

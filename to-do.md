@@ -1,6 +1,16 @@
 
 # TO DO LIST
 
+
+### barra jugadors
+
+### arquitectura de INICI joc
+
+
+
+
+
+
 ### game.js -> ableToFinishTurn()
     Fer la comprovació de si totes les peces del taulell estan ben posades
 

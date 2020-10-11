@@ -1,41 +1,43 @@
-
 /**
- * Inicia i mostra els primers camps
+ * Compute and show ID
  */
-function play() {
+function newGame() {
     sessionStorage.clear();
-    $("#playButtonDiv").hide();
-    $("#playersDiv").show();
-    $("#numberPlayersDiv").show();
+
+    //Connect to Database
+    // dataBaseConnect()
+
+    $("#startGame").hide();
+    $("#newIdDiv").show();
+    var gameId = Math.floor(Math.random()*100000);
+    sessionStorage.setItem("GAMEID",gameId);
+    $("#gameId").prop("value",gameId);
 }
 
 /**
- * Demana el nom de cada jugador
+ * Asks players name
  */
-function askPlayersName() {
-    setNumberOfPlayers($("#numberOfPlayers").val());
-    var numberOfPlayers = getNumberOfPlayers();
-    if (numberOfPlayers>4 || numberOfPlayers<2) return;
-    $("#playerNamesDiv").show();
-    getHTML("playerNamesInput");
+function askPlayerName() {
+    $("#startGame").hide();
+    $("#newIdDiv").hide();
+    $("#newPlayerDiv").show();
 }
 
 /**
- * Ensenya els links per a poder veure les cartes de cada jugador
+ * Show panel and player cards
  */
-function showTokenLinks() {
-    initializeCards();
-    setPlayerNames();
-    $("#openTokensDiv").show();
-    $("#playersDiv").hide();
-    getHTML("openTokens");
+function start() {
+    $("#newPlayerDiv").hide();
+    $("#initialMargin").hide();
+    createBoard();
+
+    //TODO
 }
 
 /**
  * Creates the table and the auxiliary tokens, and write the player names above the table
  */
-function start() {
-    $("#initialMargin").hide();
+function startOld() {
     $("#playersDiv").hide();
     $("#openTokensDiv").hide();
     $("#playerNames").show();
