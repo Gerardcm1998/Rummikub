@@ -31,6 +31,8 @@ function changeTurnOld () {
  * Change turn if cards are ok seted
  */
 function changeTurn () {
+    var sql = "select * from players where turn = 1;";
+
     var actualPlayer = getSessionActualPlayer();
     var numberOfPlayers = getNumberOfPlayers();
     var moved = getSessionMovedArray();
