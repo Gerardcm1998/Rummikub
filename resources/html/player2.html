@@ -3,7 +3,7 @@
     <link href="../css/index.css" type="text/css" rel="stylesheet">
     <link href="../css/table.css" type="text/css" rel="stylesheet">
     <link href="../css/start.css" type="text/css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+    <script src="../js/jquery-3.5.0.min.js"></script>
     <script src="../js/game.js"></script>
     <script src="../js/cards.js"></script>
     <script src="../js/html-generator.js"></script>
@@ -24,14 +24,21 @@
                 initializePlayerSets(n);
             } else {
                 $(`#player${n}Panel`).html(window.opener.sessionStorage.getItem(`player${n}Panel`));
-                $(`#player${n}NewPanel`).show();
-                takeCard(n);
+                var movedCards = window.opener.getSessionMovedArray().length != 0;
+                if (!movedCards) {
+                    $(`#player${n}NewPanel`).show();
+                    takeCard(n);
+                } else {
+                    $(`#player${n}NewPanel`).hide(); 
+                    throwCards(n); 
+                }
             }
             var Cards = getSessionCards();
             var playerCards = getSessionPlayerCards(n);
             window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
             window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
             window.opener.sessionStorage.setItem(`player${n}Cards`, JSON.stringify(playerCards));
+            window.opener.setSessionMovedArray([]);
         }); 
     </script>
 

@@ -9,11 +9,7 @@ function changeTurn () {
     var numberOfPlayers = getNumberOfPlayers();
     var moved = getSessionMovedArray();
     if (ableToFinishTurn()) {
-        if ( arraysEqual(moved,[]) ) {
-            openPlayer(actualPlayer);
-        } else {
-            throwCards(actualPlayer);
-        }
+        openPlayer(actualPlayer);
         $("#player"+actualPlayer).removeClass("playerSelected"); 
         $("#player"+actualPlayer).addClass("playerNotSelected");
         if (actualPlayer >= numberOfPlayers) {
@@ -54,7 +50,6 @@ function startTurn(player) {
     setSessionBoard();
     setSessionPanels();
     setSessionActualPlayer();
-    setSessionMovedArray([]);
 }
 
 /**

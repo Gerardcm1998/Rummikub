@@ -90,9 +90,34 @@ function takeCard(player) {
  * Treu les cartes que el jugador ha tirat
  * @param {player number} player 
  */
-function throwCards(player) { //TODO
-    var moved = getSessionMovedArray();
-    
+function throwCards(player) { //TODO: Fer que funcioni per cartes dobles
+    var moved = window.opener.getSessionMovedArray();
+    var cards = window.opener.getSessionPlayerCards(player);
+    moved.forEach(m => {
+        var card;
+        if (m.split("-").length == 3) { // Si no és un joker
+            var row = m.split("-")[1];
+            var col = m.split("-")[2];
+            card = cellOf(player,row,col);
+            var ind = cards.indexOf(`${row}-${col}`);
+            if (cards.indexOf(`${row}-${col}`,ind+1) != -1) { // si tens dues cartes repetides
+                card.text(card.text().split("|")[0]);
+            } else {
+                card.removeClass();
+                card.addClass("emptyCell")
+                card.text("");
+            }
+            cards.splice(cards.indexOf(`${row}-${col}`),1);
+        } else {
+            var num = m.split("-")[1];
+            card = cellOf(player,parseInt(num)+1,14);
+            cards.splice(cards.indexOf("joker"),1);
+            card.removeClass();
+            card.addClass("emptyCell")
+            card.text("");
+        }
+    });
+    setSessionPlayerCards(player,cards);
 }
 
 /**

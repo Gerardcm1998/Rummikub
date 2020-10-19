@@ -17,7 +17,7 @@ function askPlayersName() {
     var numberOfPlayers = getNumberOfPlayers();
     if (numberOfPlayers>4 || numberOfPlayers<2) return;
     $("#playerNamesDiv").show();
-    getHTML("playerNamesInput");
+    getHTML("inputPlayerNames");
 }
 
 /**

@@ -7,7 +7,7 @@ function getHTML(source) {
     var numberOfPlayers = getNumberOfPlayers();
     var code = "";
     switch (source) {
-        case "playerNamesInput" : 
+        case "inputPlayerNames" : 
             code = '<br>';
             for (i = 1; i <= numberOfPlayers; ++i) {
                 code += `<label for="player${i}">Jugador ${i}:</label>`;
