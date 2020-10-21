@@ -35,6 +35,9 @@
             }
             var Cards = getSessionCards();
             var playerCards = getSessionPlayerCards(n);
+            if (arraysEqual(playerCards,[])) {
+                window.opener.alert("The winner is... " + getPlayerName(n) + "!!");
+            }
             window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
             window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
             window.opener.sessionStorage.setItem(`player${n}Cards`, JSON.stringify(playerCards));

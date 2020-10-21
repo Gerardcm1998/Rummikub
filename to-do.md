@@ -10,5 +10,5 @@
 ###
     Al fer clic al nom del jugador que s'obrin les seves cartes
 
-###
-    Fer popup de victoria
+### victory.html
+    TODO: Fer el text de victòria i la taula amb les puntuacions de cada jugador.
