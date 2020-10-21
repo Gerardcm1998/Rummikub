@@ -9,3 +9,6 @@
 
 ###
     Al fer clic al nom del jugador que s'obrin les seves cartes
+
+###
+    Fer popup de victoria

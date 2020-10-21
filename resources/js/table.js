@@ -21,6 +21,11 @@ function drop(event) {
         dropped.insertBefore(dragged);
         dragged.insertAfter(aux);  
         $("#auxDiv").append(aux);
+        if (arraysEqual(getSessionMovedArray(),[])) {
+            $("#finishTurn").prop("innerText","ROBAR CARTA");
+        } else {
+            $("#finishTurn").prop("innerText","FINALITZAR TORN");
+        }
     }
 
 }

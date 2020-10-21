@@ -7,11 +7,11 @@
 function changeTurn () {
     var actualPlayer = getSessionActualPlayer();
     var numberOfPlayers = getNumberOfPlayers();
-    var moved = getSessionMovedArray();
     if (ableToFinishTurn()) {
         openPlayer(actualPlayer);
         $("#player"+actualPlayer).removeClass("playerSelected"); 
         $("#player"+actualPlayer).addClass("playerNotSelected");
+        $("#finishTurn").prop("innerText","ROBAR CARTA")
         if (actualPlayer >= numberOfPlayers) {
             startTurn(1);
         } else {
@@ -59,4 +59,5 @@ function undo() {
     getSessionBoard();
     getSessionPanels();
     setSessionMovedArray([]);
+    $("#finishTurn").prop("innerText","ROBAR CARTA");
 }
