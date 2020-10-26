@@ -31,6 +31,12 @@ span {
 .jokerCards {
     background-color: rgba(128, 128, 128, 0.356);
 }
-.emptyCards {
-    
+
+.trPuncts {
+    border: double;
+    height: 40px;
+}
+
+.tdPuncts {
+    border: ridge;
 }

@@ -10,10 +10,29 @@
   border: 10px solid green;
 }
 
+.victory {
+  width: 300px;
+  margin: auto;
+  color: rgb(0, 108, 112);
+  border: 6px double rgb(0, 108, 112);
+}
+
 h1 {
   font-size: 40px;
   text-align: center;   
   color: green;
+}
+
+h2 {
+  font-family: cursive;
+  font-size: 40px;
+  text-align: center;
+  color: rgb(0, 108, 112);
+}
+
+label {
+  font-family: cursive;
+  font-size: 30px;
 }
 
 .hiddenCentered {

@@ -2,26 +2,67 @@
 <html>
 
 <head>
-  <link href="./resources/css/index.css" type="text/css" rel="stylesheet">
-  <link href="./resources/css/table.css" type="text/css" rel="stylesheet">
-  <link href="./resources/css/start.css" type="text/css" rel="stylesheet">
-  <script src="./resources/js/jquery-3.5.0.min.js"></script>
-  <script src="./resources/js/jquery-ui.min.js"></script>
-  <script src="./resources/js/start.js"></script>
-  <script src="./resources/js/game.js"></script>
-  <script src="./resources/js/cards.js"></script>
-  <script src="./resources/js/table.js"></script>
-  <script src="./resources/js/html-generator.js"></script>
-  <script src="./resources/js/session.js"></script>
-  <script src="./resources/js/utils.js"></script>
-  <title>RUMMIKUB NO-ONLINE</title>
+  <link href="../css/index.css" type="text/css" rel="stylesheet">
+  <link href="../css/table.css" type="text/css" rel="stylesheet">
+  <link href="../css/start.css" type="text/css" rel="stylesheet">
+  <script src="../js/jquery-3.5.0.min.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  <script src="../js/game.js"></script>
+  <script src="../js/cards.js"></script>
+  <script src="../js/html-generator.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/utils.js"></script>
+  <title>VICTÒRIA</title>
+
+  <script>
+    $( document ).ready(function() {
+      var player = getSessionActualPlayer();
+      var winner = getPlayerName(player);
+      var playerName1 = getPlayerName(1);
+      var playerName2 = getPlayerName(1);
+      $("#winner").text(`El jugador guanyador és: ${winner}`)
+      
+    });
+
+  </script>
 </head>
+
 <body>
-    <div class="title">
-      <h1>RUMMIKUB</h1>
-    </div>
 
-<!-- TODO: Fer el text de victòria i la taula amb les puntuacions de cada jugador. -->
+  <div style="margin-top: 80px;"></div>
 
+  <div class="victory">
+    <h2>VICTÒRIA!!</h2>
+  </div>
+
+  <div style="margin-top: 30px;"></div>
+
+  <div style="text-align: center;">
+    <label id="winner">El jugador guanyador és: playerName</label>
+  </div>
+
+  <div style="margin-top: 30px;"></div>
+
+  <div style="text-align: center;">
+    <label id="punctuations">Puntuacions:</label>
+  </div>
+
+  <div style="margin-top: 20px;"></div>
+
+  <table style="width: 50%;">
+    <tr class="trPuncts">
+      <td id="playerName1" class="tdPuncts">playerName1</td>
+      <td id="playerName2" class="tdPuncts">playerName2</td>
+      <td id="playerName3" class="tdPuncts">playerName3</td>
+      <td id="playerName4" class="tdPuncts">playerName4</td>
+    </tr>
+    <tr class="trPuncts">
+      <td class="tdPuncts">punts1</td>
+      <td class="tdPuncts">punts2</td>
+      <td class="tdPuncts">punts3</td>
+      <td class="tdPuncts">punts4</td>
+    </tr>
+  </table>
 </body>
-</html> 
+
+</html>
