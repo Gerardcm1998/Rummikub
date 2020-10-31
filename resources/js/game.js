@@ -68,3 +68,11 @@ function undo() {
     setSessionMovedArray([]);
     $("#finishTurn").prop("innerText","ROBAR CARTA");
 }
+
+/**
+ * Indica el nombre total de punts per mostrar-lo a la taula de victòria.
+ * @param {player number} player 
+ */
+function getPlayerPoints(player) { // TODO
+    return 1;
+}
