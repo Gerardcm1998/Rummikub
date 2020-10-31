@@ -22,7 +22,7 @@ function initializeCards() {
  * @param {player number} player 
  */
 function initializePlayerSets(player) {
-    var Cards = getSessionCards();
+    var Cards = window.opener.getSessionCards();
     var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];
     setSessionPlayerCards(player,[]);
     for (j = 0; j < 14; ++j) {
@@ -71,7 +71,7 @@ function putCardIntoPlayerHTML(player,fila,colu,nomcolor) {
  * @param {player number} player
  */
 function takeCard(player) {
-    var Cards = getSessionCards();
+    var Cards = window.opener.getSessionCards();
     var numberOfCards = Cards.length;
     var nomcolor = ["redCards", "blueCards", "greenCards", "yellowCards", "jokerCards"];
     var r = Math.floor(Math.random() * numberOfCards);
@@ -90,7 +90,7 @@ function takeCard(player) {
  * Treu les cartes que el jugador ha tirat
  * @param {player number} player 
  */
-function throwCards(player) { //TODO: Fer que funcioni per cartes dobles
+function throwCards(player) {
     var moved = window.opener.getSessionMovedArray();
     var cards = window.opener.getSessionPlayerCards(player);
     moved.forEach(m => {
@@ -109,8 +109,10 @@ function throwCards(player) { //TODO: Fer que funcioni per cartes dobles
             }
             cards.splice(cards.indexOf(`${row}-${col}`),1);
         } else {
-            var num = m.split("-")[1];
-            card = cellOf(player,parseInt(num)+1,14);
+            card = cellOf(player,2,14); 
+            if(card.prop("class") != "jokerCards"){
+                card = cellOf(player,3,14);
+            }
             cards.splice(cards.indexOf("joker"),1);
             card.removeClass();
             card.addClass("emptyCell")

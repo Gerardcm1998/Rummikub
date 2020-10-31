@@ -19,29 +19,31 @@
             var n = 2;
             document.title = "Cartes de "+ getPlayerName(n);
             $(`#titlePlayer${n}`).text(`Cartes de ${getPlayerName(n)}`);
-            if (window.opener.sessionStorage.getItem(`player${n}Panel`) == null) {
+            var Cards = window.opener.getSessionCards();
+            if (window.opener.sessionStorage.getItem(`player${n}Panel`) == null) { // Inicialització a l'inici de la partida 
                 generatePlayerPanelsHTML(n);
                 initializePlayerSets(n);
+                Cards = getSessionCards();
             } else {
                 $(`#player${n}Panel`).html(window.opener.sessionStorage.getItem(`player${n}Panel`));
                 var movedCards = window.opener.getSessionMovedArray().length != 0;
-                if (!movedCards) {
+                if (movedCards) {
+                    $(`#player${n}NewPanel`).hide();
+                    throwCards(n);
+                } else if (window.opener.getSessionCards().length != 0) { // Si queden cartes per robar
                     $(`#player${n}NewPanel`).show();
                     takeCard(n);
-                } else {
-                    $(`#player${n}NewPanel`).hide(); 
-                    throwCards(n); 
+                    Cards = getSessionCards();
                 }
             }
-            var Cards = getSessionCards();
-            var playerCards = getSessionPlayerCards(n);
-            if (arraysEqual(playerCards,[])) {
-                window.opener.alert("The winner is... " + getPlayerName(n) + "!!");
+            if (window.opener.getSessionCards().length != 0) {
+                var playerCards = getSessionPlayerCards(n);
+                window.opener.sessionStorage.setItem("Cards", JSON.stringify(Cards));
+                window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
+                window.opener.sessionStorage.setItem(`player${n}Cards`, JSON.stringify(playerCards));
+                window.opener.setSessionMovedArray([]);
             }
-            window.opener.sessionStorage.setItem("Cards",JSON.stringify(Cards));
-            window.opener.sessionStorage.setItem(`player${n}Panel`, $(`#player${n}Panel`).html());
-            window.opener.sessionStorage.setItem(`player${n}Cards`, JSON.stringify(playerCards));
-            window.opener.setSessionMovedArray([]);
+            window.opener.$("#cardsLeft").text(`Cartes restants: ${window.opener.getSessionCards().length}`);
         }); 
     </script>
 

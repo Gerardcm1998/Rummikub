@@ -78,7 +78,7 @@ function playerHasCard(card) {
         return true;
     }
     var pos = -1, iter = 0;
-    c = moved.find(m => m.includes(card));
+    c = moved.find(m => m.endsWith(card) || m.startsWith(card));
     while (iter < count) {
         pos = moved.indexOf(c,pos+1);
         if (pos == -1) return true;

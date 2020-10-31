@@ -24,50 +24,50 @@
 
   <div id="initialMargin" style="margin-top: 60px;"></div>
 
-  <div id="playButtonDiv" class="startDiv" >
+  <div id="playButtonDiv" class="startDiv">
     <button class="startButton" onclick="play()">JUGAR</button>
   </div>
 
   <div id="playersDiv" class="hiddenCentered">
-  
+
     <div id="numberPlayersDiv" class="hiddenCentered">
       <label class="labels">Introdueix el nombre de jugadors: (max 4)</label>
       <input id="numberOfPlayers" class="playersInput" type="number" min="2" max="4" name="numberOfPlayers">
       <button class="okButton" style="margin-left: 30px" onclick='askPlayersName()'> ► </button>
     </div>
-    
-    <div id="playerNamesDiv" class="hiddenCentered" >
+
+    <div id="playerNamesDiv" class="hiddenCentered">
       <div id="inputPlayerNames">
-        <!-- Name Inputs generated in JavaScript-->
+        <!-- Name Inputs generated in JavaScript: getHTML("inputPlayerNames")-->
       </div>
-      <div>  
+      <div>
         <button class="startButton" onclick="showTokenLinks()"> Acceptar </button>
       </div>
     </div>
   </div>
 
-  <div id="openTokensDiv" class="hiddenCentered" >
+  <div id="openTokensDiv" class="hiddenCentered">
     <label>Fes clic aquí per obtenir les teves cartes:</label>
     <div id="openTokens" style="margin-top: 20px; margin-bottom: 20px;">
-      <!-- Open Tokens Links generated in JavaScript -->
+      <!-- Open Tokens Links generated in JavaScript: getHTML("openTokens") -->
     </div>
     <div>
       <button class="startButton" onclick="start()"> Iniciar </button>
     </div>
   </div>
-  
+
   <div id="playerNames" class="hiddenCentered" style="height: 60px; margin: auto; width: 100%; margin-top:20px;">
-    <!-- Player Names generated from JavaScript-->
+    <!-- Player Names generated from JavaScript: getHTML("playerNames")-->
   </div>
 
   <div id="panel" class="hiddenCentered" style="margin: auto; width: 100%;">
 
-    <div style="width: 15%; display: inline-block;"></div>  
+    <div style="width: 15%; display: inline-block;"></div>
 
-    <div id ="boardDiv" style="width: 65%; display: inline-block;">
-      <!-- Table generated from JavaScript-->
+    <div id="boardDiv" style="width: 65%; display: inline-block;">
+      <!-- Table generated from JavaScript: getHTML("boardDiv")-->
     </div>
-    
+
     <div style="width: 15%; display: inline-block;">
       <button id="finishTurn" onclick='changeTurn()'>ROBAR CARTA</button>
     </div>
@@ -77,7 +77,7 @@
     </div>
 
   </div>
-  
+
   <div id="cardPanelsDiv" class="hiddenCentered" style="width: 90%; margin: auto; margin-top: 30px">
     <div id="cardsPanel1" style="width: 40%; display: inline-block; "></div>
     <div id="jokerPanel" style="width: 10%; display: inline-block;"></div>
@@ -89,6 +89,7 @@
       <td id="aux"></td>
     </tr>
   </table>
-  
+
 </body>
-</html> 
+
+</html>
