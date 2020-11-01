@@ -1,0 +1,39 @@
+label {
+    font-family: cursive;
+    font-size: 30px;
+}
+
+.joinGameDiv {
+    margin: auto;
+    height: 80px;
+    display: block;
+    text-align: center;
+}
+
+.newGameDiv {
+    margin: auto;
+    width: 400px;
+    height: 80px;
+    display: block;
+}
+
+.okButton {
+    font-size: xx-large;
+}
+
+.startButton {
+    width: inherit;
+    height: inherit;
+    font-size: xx-large;
+    background: blanchedalmond;
+    border: 5px sienna double;
+}
+
+.startInput {
+    width: 30%;
+    height: inherit;
+    font-size: xx-large;
+    background: blanchedalmond;
+    border: 5px sienna double;
+    text-align: center;
+}
