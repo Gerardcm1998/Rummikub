@@ -74,5 +74,9 @@ function undo() {
  * @param {player number} player 
  */
 function getPlayerPoints(player) { // TODO
-    return 1;
+    if (player == getSessionActualPlayer()) {
+        return 0;
+    } else {
+        return "molts";
+    }
 }
