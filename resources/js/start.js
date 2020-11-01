@@ -11,7 +11,7 @@ function newGame() {
     $("#newIdDiv").show();
     var gameId = Math.floor(Math.random()*100000);
     sessionStorage.setItem("GAMEID",gameId);
-    $("#gameId").prop("value",gameId);
+    $("#gameNameId").prop("value",gameId);
 }
 
 /**
