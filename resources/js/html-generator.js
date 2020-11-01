@@ -3,7 +3,6 @@
  * @param {Div on emmagatzemar el html} source 
  */
 function getHTML(source) {
-    var numberOfPlayers = getNumberOfPlayers();
     var code = "";
     switch (source) {        
         case "boardDiv" : 
