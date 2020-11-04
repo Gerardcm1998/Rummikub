@@ -21,7 +21,7 @@ function setNumberOfPlayers(np) {
 function getPlayerName(n) {
     var numberOfPlayers = getNumberOfPlayers();
     if (n <= numberOfPlayers) {
-        return sessionStorage.getItem("Player"+n);
+        return sessionStorage.getItem("Player" + n);
     }
 }
 
@@ -30,9 +30,9 @@ function getPlayerName(n) {
  */
 function setPlayerNames() {
     var numberOfPlayers = getNumberOfPlayers();
-    for (i=1; i<=numberOfPlayers;++i) {
-        var player = $("#playerName"+i).val();
-        sessionStorage.setItem("Player"+i, player);
+    for (i = 1; i <= numberOfPlayers; ++i) {
+        var player = $("#playerName" + i).val();
+        sessionStorage.setItem("Player" + i, player);
     }
 }
 
@@ -48,7 +48,7 @@ function getSessionCards() {
  * @param {Cartes restants} Cards 
  */
 function setSessionCards(Cards) {
-    sessionStorage.setItem("Cards",JSON.stringify(Cards))
+    sessionStorage.setItem("Cards", JSON.stringify(Cards))
 }
 
 /**
@@ -62,7 +62,7 @@ function getSessionBoard() {
  * Guardem el taulell a sessió
  */
 function setSessionBoard() {
-    sessionStorage.setItem("Board",$("#boardDiv").html());
+    sessionStorage.setItem("Board", $("#boardDiv").html());
 }
 
 /**
@@ -72,27 +72,27 @@ function getSessionPanels() {
     getSessionPanel(1);
     getSessionPanel(2);
     getSessionPanel(0);
- }
- 
- /**
-  * Retorna el panell n de cartes de sessió
-  * @param {numero de panell} n 
-  */
- function getSessionPanel(n) {
-     if (n!=0) {
-         $(`#cardsPanel${n}`).html(sessionStorage.getItem(`Panel${n}`));
-     } else {
-         $("#jokerPanel").html(sessionStorage.getItem("PanelJokers"));
-     }
- }
+}
+
+/**
+ * Retorna el panell n de cartes de sessió
+ * @param {numero de panell} n 
+ */
+function getSessionPanel(n) {
+    if (n != 0) {
+        $(`#cardsPanel${n}`).html(sessionStorage.getItem(`Panel${n}`));
+    } else {
+        $("#jokerPanel").html(sessionStorage.getItem("PanelJokers"));
+    }
+}
 
 /**
  * Guardem els panells de cartes de sessió
  */
 function setSessionPanels() {
-    sessionStorage.setItem("Panel1",$("#cardsPanel1").html());
-    sessionStorage.setItem("Panel2",$("#cardsPanel2").html());
-    sessionStorage.setItem("PanelJokers",$("#jokerPanel").html());
+    sessionStorage.setItem("Panel1", $("#cardsPanel1").html());
+    sessionStorage.setItem("Panel2", $("#cardsPanel2").html());
+    sessionStorage.setItem("PanelJokers", $("#jokerPanel").html());
 }
 
 /**
@@ -107,7 +107,7 @@ function getSessionActualPlayer() {
  */
 function setSessionActualPlayer() {
     var actualPlayerId = $(".playerSelected").prop('id');
-    var playerNumber = actualPlayerId.charAt(actualPlayerId.length-1);
+    var playerNumber = actualPlayerId.charAt(actualPlayerId.length - 1);
     sessionStorage.setItem("ActualPlayer", playerNumber);
 }
 
@@ -123,7 +123,7 @@ function getSessionMovedArray() {
  * @param {vector de cartes mogudes} moved 
  */
 function setSessionMovedArray(moved) {
-    sessionStorage.setItem("Moved",JSON.stringify(moved))
+    sessionStorage.setItem("Moved", JSON.stringify(moved))
 }
 
 /**
@@ -140,17 +140,17 @@ function getSessionPlayerCards(n) {
  * @param {fila} row 
  * @param {columna} col 
  */
-function setSessionPlayerCard(player,row,col) {
+function setSessionPlayerCard(player, row, col) {
     var cards = getSessionPlayerCards(player);
     if (row == 5) {
         console.log(`player ${player} has obtained a joker`)
         cards.push(`joker`);
     } else {
-        var card = cellOf(player,row,col);
+        var card = cellOf(player, row, col);
         console.log(`putting card ${card.prop('id')} into player ${player} cards`);
         cards.push(`${row}-${col}`);
     }
-    setSessionPlayerCards(player,cards);
+    setSessionPlayerCards(player, cards);
 }
 
 /**
@@ -160,5 +160,5 @@ function setSessionPlayerCard(player,row,col) {
  * @param {columna} col 
  */
 function setSessionPlayerCards(player, obj) {
-    sessionStorage.setItem(`player${player}Cards`,JSON.stringify(obj));
+    sessionStorage.setItem(`player${player}Cards`, JSON.stringify(obj));
 }

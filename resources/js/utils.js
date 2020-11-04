@@ -4,8 +4,8 @@
  * @param {array 1} a1 
  * @param {array 2} a2 
  */
-function arraysEqual(a1,a2) {
-    return JSON.stringify(a1)==JSON.stringify(a2);
+function arraysEqual(a1, a2) {
+    return JSON.stringify(a1) == JSON.stringify(a2);
 }
 
 /**
@@ -14,7 +14,7 @@ function arraysEqual(a1,a2) {
  * @param {Row} row 
  * @param {Column} col 
  */
-function cellOf(n,row,col) {
+function cellOf(n, row, col) {
     return $(`#player${n}-${row}-${col}`);
 }
 

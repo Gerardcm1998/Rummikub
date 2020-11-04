@@ -33,10 +33,10 @@ function getHTML(source) {
                 code += "</tr>";
             }
             code += "</table>";
-        break;
+            break;
 
     }
-    $("#"+source).html(code);
+    $("#" + source).html(code);
 }
 
 /**
@@ -50,23 +50,23 @@ function createPanel(n) {
         for (row = 1; row <= 4; ++row) {
             code += "<tr>";
             for (col = 1; col <= 13; ++col) {
-                if (row==1) {
+                if (row == 1) {
                     code += `<td id="panel${n}-${row}-${col}" class='redCards' draggable="true" ondragstart="dragStart(event)" > `;
-                } else if (row==2) {
+                } else if (row == 2) {
                     code += `<td id="panel${n}-${row}-${col}" class='blueCards' draggable="true" ondragstart="dragStart(event)" > `;
-                } else if (row==3) {
+                } else if (row == 3) {
                     code += `<td id="panel${n}-${row}-${col}" class='greenCards' draggable="true" ondragstart="dragStart(event)" > `;
-                } else if (row==4) {
+                } else if (row == 4) {
                     code += `<td id="panel${n}-${row}-${col}" class='yellowCards' draggable="true" ondragstart="dragStart(event)"> `;
                 }
-                code += col+"</td>";
+                code += col + "</td>";
             }
             code += "</tr>";
         }
         code += "</table>";
         $(`#cardsPanel${n}`).html(code);
     } else {
-        for (row = 1; row <=2; ++row) {
+        for (row = 1; row <= 2; ++row) {
             code += `<tr> <td id="joker-${row}" class="jokerCards" draggable="true" ondragstart="dragStart(event)">*</td></tr>`;
         }
         code += `</table>`;

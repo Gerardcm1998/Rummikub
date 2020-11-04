@@ -4,16 +4,16 @@
  */
 function initializeCards() {
     var Cards = [];
-	for (i = 0; i < 106; ++i) {
-		let pal;
-		if (i < 26) pal = 1;
-		else if (i < 52) pal = 2;
-		else if (i < 78) pal = 3;
-		else if (i < 104) pal = 4;
-		else pal = 5;
-		
-		Cards[i] = pal*100 + (i+1)%13;
-    }	
+    for (i = 0; i < 106; ++i) {
+        let pal;
+        if (i < 26) pal = 1;
+        else if (i < 52) pal = 2;
+        else if (i < 78) pal = 3;
+        else if (i < 104) pal = 4;
+        else pal = 5;
+
+        Cards[i] = pal * 100 + (i + 1) % 13;
+    }
     setSessionCards(Cards);
 }
 
@@ -23,18 +23,18 @@ function initializeCards() {
  */
 function initializePlayerSets(player) {
     var Cards = window.opener.getSessionCards();
-    var nomcolor = ["redCards","blueCards","greenCards","yellowCards","jokerCards"];
-    setSessionPlayerCards(player,[]);
+    var nomcolor = ["redCards", "blueCards", "greenCards", "yellowCards", "jokerCards"];
+    setSessionPlayerCards(player, []);
     for (j = 0; j < 14; ++j) {
         var numberOfCards = Cards.length;
-        var r = Math.floor(Math.random()*numberOfCards);
+        var r = Math.floor(Math.random() * numberOfCards);
         var numCard = Cards[r];
-        var fila = Math.trunc(numCard/100);
-        var colu = numCard-(100*fila);
+        var fila = Math.trunc(numCard / 100);
+        var colu = numCard - (100 * fila);
         if (colu == 0) colu = 13;
-        putCardIntoPlayerHTML(player,fila,colu,nomcolor);
-        setSessionPlayerCard(player,fila,colu);
-        Cards.splice(r,1);
+        putCardIntoPlayerHTML(player, fila, colu, nomcolor);
+        setSessionPlayerCard(player, fila, colu);
+        Cards.splice(r, 1);
     }
     setSessionCards(Cards);
 }
@@ -77,12 +77,12 @@ function takeCard(player) {
     var nomcolor = ["redCards", "blueCards", "greenCards", "yellowCards", "jokerCards"];
     var r = Math.floor(Math.random() * numberOfCards);
     var numCard = Cards[r];
-    var fila = Math.trunc(numCard/100);
-    var colu = numCard-(100*fila);
+    var fila = Math.trunc(numCard / 100);
+    var colu = numCard - (100 * fila);
     if (colu == 0) colu = 13;
-    
-    putCardIntoPlayerHTML(player,fila,colu,nomcolor);
-    setSessionPlayerCard(player,fila,colu);
+
+    putCardIntoPlayerHTML(player, fila, colu, nomcolor);
+    setSessionPlayerCard(player, fila, colu);
     Cards.splice(r, 1);
     setSessionCards(Cards);
 }
@@ -99,28 +99,28 @@ function throwCards(player) {
         if (m.split("-").length == 3) { // Si no és un joker
             var row = m.split("-")[1];
             var col = m.split("-")[2];
-            card = cellOf(player,row,col);
+            card = cellOf(player, row, col);
             var ind = cards.indexOf(`${row}-${col}`);
-            if (cards.indexOf(`${row}-${col}`,ind+1) != -1) { // si tens dues cartes repetides
+            if (cards.indexOf(`${row}-${col}`, ind + 1) != -1) { // si tens dues cartes repetides
                 card.text(card.text().split("|")[0]);
             } else {
                 card.removeClass();
                 card.addClass("emptyCell")
                 card.text("");
             }
-            cards.splice(cards.indexOf(`${row}-${col}`),1);
+            cards.splice(cards.indexOf(`${row}-${col}`), 1);
         } else {
-            card = cellOf(player,2,14); 
-            if(card.prop("class") != "jokerCards"){
-                card = cellOf(player,3,14);
+            card = cellOf(player, 2, 14);
+            if (card.prop("class") != "jokerCards") {
+                card = cellOf(player, 3, 14);
             }
-            cards.splice(cards.indexOf("joker"),1);
+            cards.splice(cards.indexOf("joker"), 1);
             card.removeClass();
             card.addClass("emptyCell")
             card.text("");
         }
     });
-    setSessionPlayerCards(player,cards);
+    setSessionPlayerCards(player, cards);
 }
 
 /**
@@ -145,7 +145,7 @@ function removeDraggedFromMoveds(dragged) {
     if (ind == -1) {
         return false;
     }
-    moves.splice(ind,1);
+    moves.splice(ind, 1);
     setSessionMovedArray(moves);
     return true;
 }

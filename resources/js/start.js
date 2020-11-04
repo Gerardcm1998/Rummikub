@@ -15,7 +15,7 @@ function play() {
 function askPlayersName() {
     setNumberOfPlayers($("#numberOfPlayers").val());
     var numberOfPlayers = getNumberOfPlayers();
-    if (numberOfPlayers>4 || numberOfPlayers<2) return;
+    if (numberOfPlayers > 4 || numberOfPlayers < 2) return;
     $("#playerNamesDiv").show();
     getHTML("inputPlayerNames");
 }
@@ -26,8 +26,8 @@ function askPlayersName() {
 function start() {
     initializeCards();
     setPlayerNames();
-    for (n = 1; n <= getNumberOfPlayers();++n) {
-        openPlayer(n,isOpening=false);
+    for (n = 1; n <= getNumberOfPlayers(); ++n) {
+        openPlayer(n, isOpening = false);
     }
     $("#initialMargin").hide();
     $("#playersDiv").hide();
