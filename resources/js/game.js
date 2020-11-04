@@ -40,11 +40,34 @@ function ableToFinishTurn() {
 }
 
 /**
- * Obre el panell del jugador 
- * @param {numero de jugador} i 
+ * Obre l'HTML del jugador a la banda corresponent de la pantalla
+ * i crida a les funcions de canvi de torn si cal.
+ * @param {numero de jugador} n 
+ * @param {si nomes s'esta obrint és true, si s'està canviant el torn és false} isOpening 
  */
-function openPlayer(i) {
-    window.open(`./resources/html/player${i}.html`,`player${i}`);
+function openPlayer(n, isOpening) {
+    var playerWindow;
+    var open = isOpening ? "open" : "";
+    switch (n) {
+        case (1):
+            playerWindow =
+                window.open(`./resources/html/player.html`, `${open}player${n}`, "width=520, height=190, resizable=no,left=0,top=0");
+            break;
+        case (2):
+            playerWindow =
+                window.open(`./resources/html/player.html`, `${open}player${n}`, "width=520, height=190, resizable=no,left=1000,top=0");
+            break;
+        case (3):
+            playerWindow =
+                window.open(`./resources/html/player.html`, `${open}player${n}`, "width=520, height=190, resizable=no,left=0,top=700");
+            break;
+        case (4):
+            playerWindow =
+                window.open(`./resources/html/player.html`, `${open}player${n}`, "width=520, height=190, resizable=no,left=1000,top=700");
+            break;
+        default:
+            break;
+    }
 }
 
 /**

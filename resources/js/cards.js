@@ -46,23 +46,24 @@ function initializePlayerSets(player) {
  * @param {columna} colu 
  * @param {array de class segons el color} nomcolor 
  */
-function putCardIntoPlayerHTML(player,fila,colu,nomcolor) {
+function putCardIntoPlayerHTML(player, fila, colu, nomcolor) {
     if (fila == 5) { // Nomes hi ha les cartes 501 i 502, que son jokers
-        cellOf(player,colu+1,14).text("*"); 
-        cellOf(player,colu+1,14).addClass(nomcolor[fila-1]);
+        cellOf(player, colu + 1, 14).text("*");
+        cellOf(player, colu + 1, 14).addClass(nomcolor[fila - 1]);
 
-        $(`#player${player}NewCard`).text("*"); 
-        $(`#player${player}NewCard`).addClass(nomcolor[fila-1])
+        $(`#playerNewCard`).text("*");
+        $(`#playerNewCard`).addClass(nomcolor[fila - 1])
     } else {
-        if (cellOf(player,fila,colu).text() == "") {
-            cellOf(player,fila,colu).text(colu);
+        if (cellOf(player, fila, colu).text() == "") {
+            cellOf(player, fila, colu).text(colu);
         } else {
-            cellOf(player,fila,colu).text(colu+"|"+colu);
+            cellOf(player, fila, colu).text(colu + "|" + colu);
         }
-        cellOf(player,fila,colu).addClass(nomcolor[fila-1]);
+        cellOf(player, fila, colu).addClass(nomcolor[fila - 1]);
 
-        $(`#player${player}NewCard`).text(colu);
-        $(`#player${player}NewCard`).addClass(nomcolor[fila-1]);
+        $(`#playerNewCard`).text(colu);
+        $(`#playerNewCard`).addClass(nomcolor[fila - 1]);
+        window.opener.sessionStorage.setItem(`player${player}LastCard`, JSON.stringify([colu, nomcolor[fila - 1]]));
     }
 }
 

@@ -7,30 +7,23 @@ function getHTML(source) {
     var numberOfPlayers = getNumberOfPlayers();
     var code = "";
     switch (source) {
-        case "inputPlayerNames" : 
+        case "inputPlayerNames":
             code = '<br>';
             for (i = 1; i <= numberOfPlayers; ++i) {
                 code += `<label for="player${i}">Jugador ${i}:</label>`;
                 code += `<input id="playerName${i}" class="playersInput" type="text" name="playerName${i}"><br><br>`;
             }
             code += "<br>";
-        break;
+            break;
 
-        case "playerNames": 
-            for (i=1; i <= numberOfPlayers; ++i) {
+        case "playerNames":
+            for (i = 1; i <= numberOfPlayers; ++i) {
                 var playerName = getPlayerName(i);
-                code += `<label id="player${i}" class="playerNotSelected">${playerName}</label>`;
+                code += `<span onclick="openPlayer(${i},isOpening=true)" id="player${i}" class="playerNotSelected">${playerName}</span>`;
             }
-        break;
+            break;
 
-        case "openTokens" : 
-            for (i=1; i<=numberOfPlayers;++i) {
-                playerName = getPlayerName(i);
-                code += `<a href="./resources/html/player${i}.html" onclick="$(this).prop('style','display:none')" target="player${i}" class="playerNotSelected">${playerName}</a>`
-            }
-        break;
-        
-        case "boardDiv" : 
+        case "boardDiv":
             code = "<table>";
             for (row = 1; row <= 16; ++row) {
                 code += "<tr>";
@@ -92,11 +85,11 @@ function generatePlayerPanelsHTML(n) {
         for (col = 1; col <= 14; ++col) {
             if (row == 1 || row == 4) {
                 if (col == 14) continue;
-			}
+            }
             code += `<td id='player${n}-${row}-${col}'></td>`;
         }
         code += "</tr>";
     }
     code += "</table>";
-    $(`#player${n}Panel`).html(code);
+    $(`#playerPanel`).html(code);
 }

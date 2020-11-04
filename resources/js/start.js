@@ -21,23 +21,16 @@ function askPlayersName() {
 }
 
 /**
- * Ensenya els links per a poder veure les cartes de cada jugador
- */
-function showTokenLinks() {
-    initializeCards();
-    setPlayerNames();
-    $("#openTokensDiv").show();
-    $("#playersDiv").hide();
-    getHTML("openTokens");
-}
-
-/**
  * Creates the table and the auxiliary tokens, and write the player names above the table
  */
 function start() {
+    initializeCards();
+    setPlayerNames();
+    for (n = 1; n <= getNumberOfPlayers();++n) {
+        openPlayer(n,isOpening=false);
+    }
     $("#initialMargin").hide();
     $("#playersDiv").hide();
-    $("#openTokensDiv").hide();
     $("#playerNames").show();
     getHTML("playerNames");
     createBoard();

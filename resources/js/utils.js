@@ -10,12 +10,12 @@ function arraysEqual(a1,a2) {
 
 /**
  * Agafa la casella row-col del jugador player
- * @param {Player number} player 
+ * @param {Player number} n 
  * @param {Row} row 
  * @param {Column} col 
  */
-function cellOf(player,row,col) {
-    return $(`#player${player}-${row}-${col}`);
+function cellOf(n,row,col) {
+    return $(`#player${n}-${row}-${col}`);
 }
 
 /**
