@@ -8,11 +8,9 @@ function changeTurn() {
     var actualPlayer = getSessionActualPlayer();
     var numberOfPlayers = getNumberOfPlayers();
     if (ableToFinishTurn()) {
-        if (getSessionPlayerCards(actualPlayer).length == getSessionMovedArray().length) {
+        // Si ha tirat les ultimes cartes que tenia
+        if (getSessionPlayerCards(actualPlayer).length == getSessionMovedArray().length) { 
             window.open(`./resources/html/victory.html`, `win`);
-            for (i = 1; i <= numberOfPlayers; ++i) {
-                window.close(`player${i}`);
-            }
             return;
         }
         openPlayer(actualPlayer, isOpening = false);
