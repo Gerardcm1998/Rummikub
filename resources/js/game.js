@@ -9,7 +9,7 @@ function changeTurn() {
     var numberOfPlayers = getNumberOfPlayers();
     if (ableToFinishTurn()) {
         // Si ha tirat les ultimes cartes que tenia
-        if (getSessionPlayerCards(actualPlayer).length == getSessionMovedArray().length) { 
+        if (getSessionPlayerCards(actualPlayer).length == getSessionMovedArray().length) {
             window.open(`./resources/html/victory.html`, `win`);
             return;
         }
@@ -92,12 +92,24 @@ function undo() {
 
 /**
  * Indica el nombre total de punts per mostrar-lo a la taula de victòria.
- * @param {player number} player 
+ * @param {player number} n 
  */
-function getPlayerPoints(player) { // TODO
-    if (player == getSessionActualPlayer()) {
+function getCurrentGamePlayerPoints(n) { 
+    if (n == window.opener.getSessionActualPlayer()) {
         return 0;
-    } else {
-        return "molts";
     }
+    var cards = window.opener.getSessionPlayerCards(n);
+    var points = 0;
+    cards.forEach(c => {
+        if (c.split("-").length == 1) { // si és un joker, té format "joker"
+            points += 20;
+        } else { // Si no és un joker, té format "fila-columna"
+            points += parseInt(c.split("-")[1]);
+        }
+    });
+    return points;
+}
+
+function playAgain() {
+    window.open("../../index.html");
 }
