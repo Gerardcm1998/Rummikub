@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "sqlite3": "^5.0.0"
   },
   "engines": {
     "node": "12.16.1"

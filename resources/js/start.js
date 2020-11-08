@@ -5,7 +5,7 @@ function newGame() {
     sessionStorage.clear();
 
     //Connect to Database
-    // dataBaseConnect()
+    dataBaseConnect()
 
     $("#startGame").hide();
     $("#newIdDiv").show();

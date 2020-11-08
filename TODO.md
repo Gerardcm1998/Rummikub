@@ -1,5 +1,6 @@
 #BASE DE DADES
--saber fer crides a base d dades
+-obrir connexio automaticament
+-saber fer crides a base de dades
 -comprovar id del joc
 -inscriure noms jugadors (no duplicats)
 -pillar cartes
